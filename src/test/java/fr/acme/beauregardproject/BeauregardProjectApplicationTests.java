@@ -1,4 +1,4 @@
-package fr.acme.beauregard_project;
+package fr.acme.beauregardproject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

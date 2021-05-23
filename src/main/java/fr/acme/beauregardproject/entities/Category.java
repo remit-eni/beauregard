@@ -1,4 +1,4 @@
-package fr.acme.beauregard_project.entities;
+package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table
 public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

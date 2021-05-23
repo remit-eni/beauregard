@@ -1,4 +1,4 @@
-package fr.acme.beauregard_project.entities;
+package fr.acme.beauregardproject.entities;
 
 
 import javax.persistence.*;
@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table
 public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

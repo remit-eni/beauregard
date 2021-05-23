@@ -1,9 +1,10 @@
-package fr.acme.beauregard_project.entities;
+package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table
 public class ProductHasOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

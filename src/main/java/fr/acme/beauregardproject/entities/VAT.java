@@ -14,7 +14,7 @@ public class VAT implements Serializable {
     private String name;
     private float rate;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "vat")
     private Set<Product> products;
 
     {

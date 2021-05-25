@@ -13,7 +13,7 @@ public class Brand implements Serializable {
     private Long id;
     private String label;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "brand")
     private Set<Product> products;
 
     {

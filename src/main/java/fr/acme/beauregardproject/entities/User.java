@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String phoneNumber;
     private Boolean isAdmin;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "user")
     private Set<Client> clients;
 
     {

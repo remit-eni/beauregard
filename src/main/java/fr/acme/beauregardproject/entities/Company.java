@@ -14,7 +14,7 @@ public class Company implements Serializable {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "company")
     private Set<Client> clients;
 
     {

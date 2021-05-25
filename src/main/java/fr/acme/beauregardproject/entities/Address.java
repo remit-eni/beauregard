@@ -17,7 +17,7 @@ public class Address implements Serializable {
     private String city;
     private String zip;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "address")
     private Set<Client> clients;
 
     {

@@ -1,4 +1,4 @@
-package fr.acme.beauregardproject.repo;
+package fr.acme.beauregardproject.repository;
 
 
 import fr.acme.beauregardproject.entities.User;
@@ -9,8 +9,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query(" select u from User u " +
-            " where u.firstname = ?1")
+    @Query(" select u from User u  where u.firstname = ?1")
     Optional<User> findUserWithName(String firstname);
 
 }

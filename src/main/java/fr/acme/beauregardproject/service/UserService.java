@@ -1,7 +1,7 @@
 package fr.acme.beauregardproject.service;
 
 import fr.acme.beauregardproject.entities.User;
-import fr.acme.beauregardproject.repo.UserRepository;
+import fr.acme.beauregardproject.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

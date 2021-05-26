@@ -73,6 +73,10 @@ public class User implements Serializable , UserDetails {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -114,10 +118,6 @@ public class User implements Serializable , UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     @Override

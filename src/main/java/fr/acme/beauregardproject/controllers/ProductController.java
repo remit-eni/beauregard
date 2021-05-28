@@ -119,6 +119,9 @@ public class ProductController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
 
         model.addAttribute("product", product);
+        model.addAttribute("categories", catRepo.findAll());
+        model.addAttribute("brands", brandRepo.findAll());
+        model.addAttribute("vats",vatRepo.findAll());
         return "updateProduct";
     }
 

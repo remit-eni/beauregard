@@ -17,7 +17,7 @@
    would be @{/edit.html}
    -->
 
-<form th:action="@{/update/{id}(id=${product.id})}"
+<form th:action="@{/updateProduct/{id}(id=${product.id})}"
       th:object="${product}" method="POST">
     Référence :
     <input type="text" th:field="*{reference}" />
@@ -38,16 +38,32 @@
     <input type="number" th:field="*{stockQuantity}" />
     <br/>
     Categorie :
-    <input type="text" th:field="*{category.label}" />
+    <select th:field="*{category}" required>
+        <option th:each="category : ${categories}"
+                th:value="${category.id}"
+                th:text="${category.label}"></option>
+    </select>
+    <!--<input type="text" th:field="*{category.label}" />-->
     <br/>
     Marque :
-    <input type="text" th:field="*{brand.label}" />
+
+    <select th:field="*{brand}" required>
+        <option th:each="brand : ${brands}"
+                th:value="${brand.id}"
+                th:text="${brand.label}"></option>
+    </select>
+
+    <!--<input type="text" th:field="*{brand.label}" />-->
     <br/>
     TVA :
-    <input type="number" th:field="*{vat.rate}" />
+    <select th:field="*{vat}" required>
+        <option th:each="vat : ${vats}"
+                th:value="${vat.id}"
+                th:text="${vat.name}"></option>
+    </select>
+    <!--<input type="number" th:field="*{vat.rate}" />-->
     <br/>
-    <a th:href="@{/updateProduct/{id}(id=${product.id})}">
-    <input type="submit" value="Changer le produit" /></a>
+    <input type="submit" value="Changer le produit" />
 </form>
 
 <br/>

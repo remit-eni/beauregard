@@ -64,7 +64,6 @@ public class VAT implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", rate=" + rate +
-                ", products=" + products +
                 '}';
     }
 }

@@ -52,7 +52,6 @@ public class Brand implements Serializable {
         return "Brand{" +
                 "id=" + id +
                 ", label='" + label + '\'' +
-                ", products=" + products +
                 '}';
     }
 }

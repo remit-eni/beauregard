@@ -3,84 +3,84 @@
 <h2 class="text-center">Ajouter un client</h2>
 <div id="main" class="container" style="margin-bottom: 5%">
   <hr>
-  <form th:action="@{/editClient/{id}(id=${client.id}) th:object="${client}" method="post">
+  <form th:action="@{/editClient/{id}(id=${client.id})}" th:object="${updatedClient}" method="post">
     <h5>Civilités</h5>
     <div class="form-group row">
-      <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></span>
+      <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{updatedClient.getFirstname()}"></span>
       <label  for="firstname" class="col-sm-2 col-form-label" >Prénom</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" th:field="*{firstname}" id="firstname" name="firstname" placeholder="Prénom" th:required="required"/>
+        <input type="text" class="form-control" th:field="*{updatedClient.getFirstname()}" id="firstname" name="firstname" placeholder="Prénom" th:required="required"/>
       </div>
     </div>
 
     <div class="form-group row">
-      <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+      <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{updatedClient.getLastname()}"></span>
       <label for="lastname" class="col-sm-2 col-form-label" >Nom</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" th:field="*{lastname}" id="lastname" name="lastname" placeholder="Nom" th:required="required"/>
+        <input type="text" class="form-control" th:field="*{updatedClient.getLastname()}" id="lastname" name="lastname" placeholder="Nom" th:required="required"/>
       </div>
     </div>
     <div class="form-group row">
-      <span th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></span>
+      <span th:if="${#fields.hasErrors('company')}" th:errors="*{updatedClient.getCompany()}"></span>
       <label for="company" class="col-sm-2 col-form-label" >Entreprise</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" th:field="*{company}" id="company" name="company" placeholder="Nom de l'entreprise" th:required="required"/>
+        <input type="text" class="form-control" th:field="*{updatedClient.getCompany()}" id="company" name="company" placeholder="Nom de l'entreprise" th:required="required"/>
       </div>
     </div>
     <div class="form-group row">
-      <span th:if="${#fields.hasErrors('emal')}" th:errors="*{email}"></span>
+      <span th:if="${#fields.hasErrors('emal')}" th:errors="*{updatedClient.getEmail()}"></span>
       <label for="email" class="col-sm-2 col-form-label" >Email</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Adresse Email" th:required="required"/>
+        <input type="text" class="form-control" th:field="*{updatedClient.getEmail()}" id="email" name="email" placeholder="Adresse Email" th:required="required"/>
       </div>
     </div>
     <div class="form-group row">
-      <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+      <span th:if="${#fields.hasErrors('password')}" th:errors="*{updatedClient.getPassword()}"></span>
       <label for="password" class="col-sm-2 col-form-label" >Password</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Mot de passe" th:required="required"/>
+        <input type="password" class="form-control" th:field="*{updatedClient.getPassword()}" id="password" name="password" placeholder="Mot de passe" th:required="required"/>
       </div>
     </div>
     <div class="form-group row">
-      <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+      <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{updatedClient.getPhoneNumber()}"></span>
       <label for="phoneNumber" class="col-sm-2 col-form-label" >Téléphone</label>
       <div class="col-sm-10">
-        <input type="tel" class="form-control" th:field="*{phoneNumber}" id="phoneNumber" name="phoneNumber" placeholder="Téléphone" th:required="required"/>
+        <input type="tel" class="form-control" th:field="*{updatedClient.getPhoneNumber()}" id="phoneNumber" name="phoneNumber" placeholder="Téléphone" th:required="required"/>
       </div>
     </div>
     <div class="form-group row">
-      <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></span>
+      <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{updatedClient.getBirthdate()}"></span>
       <label for="birthdate" class="col-sm-2 col-form-label" >Date de naissance</label>
       <div class="col-sm-10">
-        <input type="date" class="form-control" th:field="*{birthdate}" id="birthdate" name="birthdate" th:required="required"/>
+        <input type="date" class="form-control" th:field="*{updatedClient.getBirthdate()}" id="birthdate" name="birthdate" th:required="required"/>
       </div>
     </div>
     <hr>
     <h5>Adresse</h5>
     <div class="form-group row">
       <div class="col">
-        <span th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></span>
+        <span th:if="${#fields.hasErrors('number')}" th:errors="*{updatedClient.getAddress().getNumber()}"></span>
         <label for="number" class="required" >Numéro</label>
-        <input type="text" class="form-control" th:field="*{number}" id="number" name="number" placeholder="Numéro de rue" th:required="required" />
+        <input type="text" class="form-control" th:field="*{updatedClient.getAddress().getNumber()}" id="number" name="number" placeholder="Numéro de rue" th:required="required" />
       </div>
       <div class="col">
         <div >
-          <span th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></span>
+          <span th:if="${#fields.hasErrors('street')}" th:errors="*{updatedClient.getAddress().getStreet()}"></span>
           <label for="street" class="required" for="street">Rue</label>
-          <input type="text" class="form-control" th:field="*{street}" id="street" name="street" placeholder="Libellé de rue" th:required="required"/>
+          <input type="text" class="form-control" th:field="*{updatedClient.getAddress().getStreet()}" id="street" name="street" placeholder="Libellé de rue" th:required="required"/>
         </div>
       </div>
     </div>
     <div class="form-group row">
       <div class="col">
-        <span th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}"></span>
+        <span th:if="${#fields.hasErrors('zip')}" th:errors="*{updatedClient.getAddress().getZip()}"></span>
         <label for="zip" >Code Postal</label>
-        <input type="text" class="form-control" th:field="*{zip}" id="zip" name="zip" placeholder="Code postal"/>
+        <input type="text" class="form-control" th:field="*{updatedClient.getAddress().getNumber()}" id="zip" name="zip" placeholder="Code postal"/>
       </div>
       <div class="col">
-        <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+        <span th:if="${#fields.hasErrors('city')}" th:errors="*{updatedClient.getAddress().getCity()}"></span>
         <label for="city">Ville</label>
-        <input type="text" class="form-control" th:field="*{city}" id="city" name="zip" placeholder="Ville"/>
+        <input type="text" class="form-control" th:field="*{updatedClient.getAddress().getCity()}" id="city" name="zip" placeholder="Ville"/>
       </div>
     </div>
     <hr>

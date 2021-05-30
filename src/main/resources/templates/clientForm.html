@@ -1,10 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div th:include="fragments/head :: head"></div>
+<div th:include="fragments/navbar :: navbar"></div>
+<div id="background"></div>
+<div id="title">Ajouter un client</div>
+<div class="container" >
+    <hr>
+    <form action="#"  th:action="@{/addClient}" th:object="${client}" method="post">
+        <h5>Civilités</h5>
+        <div class="form-group row">
+            <span th:errors="*{client.firstname}" th:if="${#fields.hasErrors('firstname')}"></span>
+            <label  for="firstname" class="col-sm-2 col-form-label" >Prénom</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{client.firstname}" id="firstname" name="firstname" placeholder="Prénom" th:required="required"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{client.lastname}"></span>
+            <label for="lastname" class="col-sm-2 col-form-label" >Nom</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{client.lastname}" id="lastname" name="lastname" placeholder="Nom" th:required="required"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <span th:if="${#fields.hasErrors('company')}" th:errors="*{client.company.name}"></span>
+            <label for="company" class="col-sm-2 col-form-label" >Entreprise</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{client.company.name}" id="company" name="company" placeholder="Nom de l'entreprise" th:required="required"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{client.email}"></span>
+            <label for="email" class="col-sm-2 col-form-label" >Email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{client.email}" id="email" name="email" placeholder="Adresse Email" th:required="required"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{client.password}"></span>
+            <label for="password" class="col-sm-2 col-form-label" >Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" th:field="*{client.password}" id="password" name="password" placeholder="Mot de passe" th:required="required"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{client.phoneNumber}"></span>
+            <label for="phoneNumber" class="col-sm-2 col-form-label" >Téléphone</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" th:field="*{client.phoneNumber}" id="phoneNumber" name="phoneNumber" placeholder="Téléphone" th:required="required"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{client.birthdate}"></span>
+            <label for="birthdate" class="col-sm-2 col-form-label" >Date de naissance</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" th:field="*{client.birthdate}" id="birthdate" name="birthdate" th:required="required"/>
+            </div>
+        </div>
+        <hr>
+ <h5>Adresse</h5>
+        <div class="form-group row">
+            <div class="col">
+                <span th:if="${#fields.hasErrors('address.numberStreet')}" th:errors="*{client.address.number}"></span>
+                <label for="numberStreet" class="required">Numéro</label>
+                <input type="text" class="form-control" th:field="*{client.address.street}" id="numberStreet" name="numberStreet" placeholder="Numéro de rue" th:required="required" />
+            </div>
+            <div class="col">
+                <div >
+                    <span th:if="${#fields.hasErrors('street')}" th:errors="*{client.address.street}"></span>
+                    <label for="street" class="required" for="street">Rue</label>
+                    <input type="text" class="form-control" th:field="*{client.address.street}" id="street" name="street" placeholder="Libellé de rue" th:required="required"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <span th:if="${#fields.hasErrors('zip')}" th:errors="*{client.address.zip}"></span>
+                <label for="zip" >Code Postal</label>
+                <input type="text" class="form-control" th:field="*{client.address.zip}" id="zip" name="zip" placeholder="Code postal"/>
+            </div>
+            <div class="col">
+                <span th:if="${#fields.hasErrors('city')}" th:errors="*{client.address.city}"></span>
+                <label for="city">Ville</label>
+                <input type="text" class="form-control" th:field="*{client.address.city}" id="city" name="zip" placeholder="Ville"/>
+            </div>
+        </div> -->
+        <hr>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="float-right">
+                    <button type="submit" class="btn" style="background-color: #1f75ec ; color: white">Envoyer</button>
+                    <button type="button" id="resetButton" class="btn" style="background-color: #1f75ec ; color: white">Reset</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <a th:href = "@{/clientPage}"> Back to Client List</a>
+</div>
+<div th:include="fragments/footer :: footer"></div>

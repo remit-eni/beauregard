@@ -1,5 +1,9 @@
 package fr.acme.beauregardproject.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -7,13 +11,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table
+@Table (name = "command")
 public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String reference;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime creationDate;
 
     @ManyToOne
@@ -21,7 +27,7 @@ public class Order implements Serializable {
     private Client client;
 
     @OneToMany(mappedBy = "order")
-    private Set<ProductHasOrder> orderLines;
+    Set<ProductHasOrder> orderLines;
 
 
     public Order() {

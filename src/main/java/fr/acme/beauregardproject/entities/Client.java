@@ -3,6 +3,8 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -31,6 +33,12 @@ public class Client implements Serializable {
     @JoinColumn(name = "Company_id")
     private Company company;
 
+    @OneToMany(mappedBy = "client")
+    private Set<Order> orders;
+    {
+        orders = new HashSet<Order>();
+    }
+
     public Client() {
     }
 
@@ -46,6 +54,20 @@ public class Client implements Serializable {
         this.user = user;
         this.company = company;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -145,6 +167,8 @@ public class Client implements Serializable {
                 ", address=" + address +
                 ", user=" + user +
                 ", company=" + company +
+                ", orders=" + orders +
                 '}';
     }
+
 }

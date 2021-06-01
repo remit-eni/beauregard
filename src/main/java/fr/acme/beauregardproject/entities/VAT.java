@@ -16,7 +16,6 @@ public class VAT implements Serializable {
 
     @OneToMany(mappedBy = "vat")
     private Set<Product> products;
-
     {
         products = new HashSet<Product>();
     }

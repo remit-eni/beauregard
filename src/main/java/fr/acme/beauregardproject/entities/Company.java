@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,11 +16,7 @@ public class Company implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "company")
-    private Set<Client> clients;
-
-    {
-        clients = new HashSet<Client>();
-    }
+    private List<Client> clients;
 
     public Company() {
     }
@@ -32,6 +29,10 @@ public class Company implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,11 +41,11 @@ public class Company implements Serializable {
         this.name = name;
     }
 
-    public Set<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(Set<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
@@ -57,8 +58,5 @@ public class Company implements Serializable {
                 '}';
     }
 }
-
-
-
 
 

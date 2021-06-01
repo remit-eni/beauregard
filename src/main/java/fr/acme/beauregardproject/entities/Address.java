@@ -17,6 +17,7 @@ public class Address implements Serializable {
     private String city;
     private String zip;
 
+
     @OneToMany(mappedBy = "address")
     private List<Client> clients;
 
@@ -37,11 +38,11 @@ public class Address implements Serializable {
         return id;
     }
 
-    public String getNumber() {
+    public String getNumberStreet() {
         return numberStreet;
     }
 
-    public void setNumber(String numberStreet) {
+    public void setNumberStreet(String numberStreet) {
         this.numberStreet = numberStreet;
     }
 

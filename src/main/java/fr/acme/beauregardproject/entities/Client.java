@@ -21,15 +21,15 @@ public class Client implements Serializable {
     private String phoneNumber;
     private boolean ordered;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
     private Address address;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "User_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Company_id")
     private Company company;
 
@@ -66,7 +66,6 @@ public class Client implements Serializable {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
-
 
 
     public Long getId() {

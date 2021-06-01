@@ -38,21 +38,6 @@ public class ClientController {
 
     @GetMapping("/addClient")
     public String getClientForm( Model model) {
-      //  model.addAttribute("client", client);
-    /*    model.addAttribute("firstname", client.getFirstname());
-        model.addAttribute("lastname", client.getLastname());
-        model.addAttribute("birthdate", client.getBirthdate());
-        model.addAttribute("email", client.getEmail());
-        model.addAttribute("password", client.getPassword());
-        model.addAttribute("phoneNumber", client.getPhoneNumber());
-        model.addAttribute("company", client.getCompany().getName());
-        model.addAttribute("numberStreet", client.getAddress().getNumber());
-        model.addAttribute("street", client.getAddress().getStreet());
-        model.addAttribute("zip", client.getAddress().getZip());
-        model.addAttribute("city",client.getAddress().getCity());
-        return "clientForm";
-
-     */
         Client client = new Client();
         model.addAttribute("client", client);
         return "clientForm";
@@ -61,19 +46,6 @@ public class ClientController {
     @PostMapping("/addClient")
     public String addClient(@Valid @ModelAttribute("client") Client client,  BindingResult result, Model model) {
         clientRepository.save(client);
-
-    /*    model.addAttribute("firstname", client.getFirstname());
-        model.addAttribute("lastname", client.getLastname());
-        model.addAttribute("birthdate", client.getBirthdate());
-        model.addAttribute("email", client.getEmail());
-        model.addAttribute("password", client.getPassword());
-        model.addAttribute("phoneNumber", client.getPhoneNumber());
-        model.addAttribute("company", client.getCompany().getName());
-        model.addAttribute("numberStreet", client.getAddress().getNumber());
-        model.addAttribute("street", address.getStreet());
-        model.addAttribute("zip", address.getZip());
-        model.addAttribute("city", address.getCity());
-        */
 
         return "clientForm";
         //return "redirect:/clientPage";

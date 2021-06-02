@@ -2,9 +2,7 @@ package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table
@@ -12,7 +10,9 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(length = 50)
     private String numberStreet;
+    @Column(length=50)
     private String street;
     private String city;
     private String zip;
@@ -33,15 +33,16 @@ public class Address implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     public Long getId() {
         return id;
     }
 
-    public String getNumber() {
+    public String getNumberStreet() {
         return numberStreet;
     }
 
-    public void setNumber(String numberStreet) {
+    public void setNumberStreet(String numberStreet) {
         this.numberStreet = numberStreet;
     }
 

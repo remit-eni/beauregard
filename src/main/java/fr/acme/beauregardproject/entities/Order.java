@@ -7,8 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Table (name = "command")
@@ -27,7 +27,7 @@ public class Order implements Serializable {
     private Client client;
 
     @OneToMany(mappedBy = "order")
-    Set<ProductHasOrder> orderLines;
+    List<ProductHasOrder> orderLines;
 
 
     public Order() {

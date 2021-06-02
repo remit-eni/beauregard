@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,11 +17,7 @@ public class Category implements Serializable {
 
 
     @OneToMany(mappedBy = "category")
-    private Set<Product> products;
-
-    {
-        products = new HashSet<Product>();
-    }
+    private List<Product> products;
 
     public Category() {
 
@@ -56,11 +53,11 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

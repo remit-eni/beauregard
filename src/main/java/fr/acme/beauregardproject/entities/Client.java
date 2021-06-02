@@ -3,8 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table
@@ -13,36 +12,37 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String firstname;
     private String lastname;
     private String email;
     private String password;
+
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date birthdate;
     private String phoneNumber;
     private boolean ordered;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
     private Address address;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "User_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Company_id")
     private Company company;
 
     @OneToMany(mappedBy = "client")
-    private Set<Order> orders;
-    {
-        orders = new HashSet<Order>();
-    }
+    private List<Order> orders;
 
     public Client() {
     }
 
-    public Client(String firstname, String lastname, String email, String password, Date birthdate, String phoneNumber, boolean ordered, Address address, User user, Company company) {
+    public Client(String firstname, String lastname, String email, String password,Date birthdate, String phoneNumber, boolean ordered, Address address, User user, Company company) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -59,14 +59,13 @@ public class Client implements Serializable {
         this.id = id;
     }
 
-    public Set<Order> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
-
 
 
     public Long getId() {

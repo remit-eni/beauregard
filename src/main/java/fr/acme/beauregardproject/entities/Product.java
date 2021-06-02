@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -33,8 +34,7 @@ public class Product implements Serializable {
     private Brand brand;
 
     @OneToMany(mappedBy = "product")
-    Set<ProductHasOrder> orderLines;
-
+    List<ProductHasOrder> orderLines;
 
     public Product() {
     }

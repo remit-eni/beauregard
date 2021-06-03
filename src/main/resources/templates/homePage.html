@@ -1,8 +1,10 @@
 <html>
-    <head>
-        <title>// inset title</title>
-    </head>
-    <body>
-        <h1> insert body title</h1>
-    </body>
+<head>
+    <title>Hello W page !</title>
+</head>
+<body>
+<h1>Hello W <span th:text="${order.getReference()}" />!!!</h1>
+
+<a th:href="@{/orderPage}">Page 2</a>
+</body>
 </html>

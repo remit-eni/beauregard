@@ -56,6 +56,10 @@ public class Client implements Serializable {
         this.company = company;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

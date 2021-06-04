@@ -11,18 +11,18 @@
 <body>
 <h1>Créer une commande :</h1>
 
-<form action="#" th:action="@{/createOrderPage.html}" th:object="${order}" method="post">
+<form action="#" th:action="@{/createOrderPage}" th:object="${order}" method="post">
     <label for="reference">Reference</label>
     <input type="text" th:field="*{reference}" id="reference" placeholder="reference">
     <span th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span>
-    <label for="creationDate">Date</label>
-    <input type="text" th:field="*{creationDate}" id="creationDate" placeholder="creationDate">
-    <span th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></span>
+    <!-- <label for="creationDate">Date</label>
+     <input type="datetime-local" th:field="*{creationDate}" id="creationDate" placeholder="creationDate">
+    <span th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></span> -->
     <label for="reference">client</label>
     <select th:field="*{client}" required>
-        <option th:each="client : ${client}"
+        <option th:each="client : ${clients}"
                 th:value="${client.id}"
-                th:text="${client.reference}"></option>
+                th:text="${client.lastname}"></option>
 
     </select>
 

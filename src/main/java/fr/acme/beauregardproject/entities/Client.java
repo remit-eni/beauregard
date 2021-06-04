@@ -156,8 +156,8 @@ public class Client implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", ordered=" + ordered +
                 ", address=" + address +
-                ", user=" + user +
-                ", company=" + company +
+//                ", user=" + user +
+//                ", company=" + company +
                 '}';
     }
 }

@@ -29,8 +29,8 @@
       <td th:utext="${order.reference}">...</td>
       <td th:utext="${order.creationDate}">...</td>
       <td th:utext="${order.client.lastname}">...</td>
-      <td> <a th:href="@{/updateOrderPage.html/{id}(id=${order.id})}">Edit</a> </td>
-      <td> <a th:href="@{/deleteOrderPage.html/{id}(id=${order.id})}">Delete</a> </td>
+      <td> <a th:href="@{/updateOrderPage/{id}(id=${order.id})}">Edit </a> </td>
+      <td> <a th:href="@{/deleteOrderPage/{id}(id=${order.id})}">Delete</a> </td>
     </tr>
 
   </table>

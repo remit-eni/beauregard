@@ -17,16 +17,12 @@
     Référence :
     <input type="text" th:field="*{reference}" />
     <br/>
-    Label :
-    <input type="text" th:field="*{creationDate}" />
-    <br/>
     client :
     <select th:field="*{client}" required>
-        <option th:each="category : ${client}"
+        <option th:each="client : ${clients}"
                 th:value="${client.id}"
-                th:text="${client.reference}"></option>
+                th:text="${client.lastname}"></option>
     </select>
-    <!--<input type="text" th:field="*{category.label}" />-->
     <br/>
 
     <input type="submit" value="Modifier la Commande" />

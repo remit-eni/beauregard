@@ -32,6 +32,8 @@ public class Order implements Serializable {
     public Order() {
     }
 
+
+
     public Order(String reference, LocalDateTime creationDate, Client client) {
         this.reference = reference;
         this.creationDate = creationDate;

@@ -1,10 +1,9 @@
 package fr.acme.beauregardproject.entities;
 
-
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table
@@ -12,38 +11,46 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String number;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
+    private String numberStreet;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String street;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String city;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String zip;
 
     @OneToMany(mappedBy = "address")
-    private Set<Client> clients;
-
-    {
-        clients = new HashSet<Client>();
-    }
+    private List<Client> clients;
 
     public Address() {
     }
 
-    public Address(String number, String street, String city, String zip) {
-        this.number = number;
+    public Address(String numberStreet, String street, String city, String zip) {
+        this.numberStreet = numberStreet;
         this.street = street;
         this.city = city;
         this.zip = zip;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getNumberStreet() {
+        return numberStreet;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setNumberStreet(String numberStreet) {
+        this.numberStreet = numberStreet;
     }
 
     public String getStreet() {
@@ -70,11 +77,11 @@ public class Address implements Serializable {
         this.zip = zip;
     }
 
-    public Set<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(Set<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 
@@ -82,7 +89,7 @@ public class Address implements Serializable {
     public String toString() {
         return "Address{" +
                 "id=" + id +
-                ", number='" + number + '\'' +
+                ", numberStreet='" + numberStreet + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", zip='" + zip + '\'' +

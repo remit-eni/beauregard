@@ -1,6 +1,7 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,12 +12,15 @@ public class VAT implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String name;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private float rate;
 
     @OneToMany(mappedBy = "vat")
     private Set<Product> products;
-
     {
         products = new HashSet<Product>();
     }
@@ -64,7 +68,6 @@ public class VAT implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", rate=" + rate +
-                ", products=" + products +
                 '}';
     }
 }

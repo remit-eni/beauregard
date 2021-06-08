@@ -2,9 +2,10 @@ package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table
@@ -21,24 +22,20 @@ public class Client implements Serializable {
     private String phoneNumber;
     private boolean ordered;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
     private Address address;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "User_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Company_id")
     private Company company;
 
     @OneToMany(mappedBy = "client")
-    private Set<Order> orders;
-
-    {
-        orders = new HashSet<Order>();
-    }
+    private List<Order> orders = new ArrayList<>();
 
     public Client() {
     }
@@ -59,6 +56,15 @@ public class Client implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
 
     public Long getId() {
         return id;
@@ -158,6 +164,7 @@ public class Client implements Serializable {
                 ", address=" + address +
 //                ", user=" + user +
 //                ", company=" + company +
+                ", orders=" + orders +
                 '}';
     }
 }

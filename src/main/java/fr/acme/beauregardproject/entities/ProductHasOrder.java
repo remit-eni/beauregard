@@ -66,4 +66,15 @@ public class ProductHasOrder implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "ProductHasOrder{" +
+                "id=" + id +
+                ", product=" + product +
+                ", order=" + order +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

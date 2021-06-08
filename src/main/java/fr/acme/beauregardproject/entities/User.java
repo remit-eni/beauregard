@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,24 +18,27 @@ public class User implements Serializable {
     private String password;
     private String phoneNumber;
     private Boolean isAdmin;
+    private Boolean isLoggedIn;
 
     @OneToMany(mappedBy = "user")
-    private Set<Client> clients;
+    private List<Client> clients;
 
-    {
-        clients = new HashSet<Client>();
-    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     public User() {
     }
 
-    public User(String firstname, String lastname, String email, String password, String phoneNumber, Boolean isAdmin) {
+    public User(String firstname, String lastname, String email, String password, String phoneNumber, Boolean isAdmin, Boolean isLoggedIn) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.isAdmin = isAdmin;
+        this.isLoggedIn= isLoggedIn;
     }
 
     public long getId() {
@@ -55,6 +59,14 @@ public class User implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Boolean getLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(Boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 
     public String getEmail() {
@@ -89,24 +101,32 @@ public class User implements Serializable {
         isAdmin = admin;
     }
 
-    public Set<Client> getClients() {
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(Set<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
+                "firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", isAdmin=" + isAdmin +
+                ", isLoggedIn=" + isLoggedIn +
                 ", clients=" + clients +
                 '}';
     }

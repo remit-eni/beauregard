@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,10 +21,7 @@ public class VAT implements Serializable {
     private float rate;
 
     @OneToMany(mappedBy = "vat")
-    private Set<Product> products;
-    {
-        products = new HashSet<Product>();
-    }
+    private List<Product> products;
 
     public VAT() {
 
@@ -54,11 +52,11 @@ public class VAT implements Serializable {
         this.rate = rate;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

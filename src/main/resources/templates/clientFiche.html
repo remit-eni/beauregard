@@ -1,0 +1,117 @@
+<div th:include="fragments/head :: head"></div>
+<div th:include="fragments/navbar :: navbar"></div>
+<div id="background">
+    <div id="title">Profil client</div>
+    <div style="margin:1%; padding: 4%; text-align: center">
+    <div class="emp-profile" th:object="${client}">
+        <form style="text-align: center" method="post">
+            <div style="margin-bottom: 1%;" class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <icon class="fas fa-address-card fa-4x"></icon>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h4 th:text="${client.lastname}+' '+${client.firstname}">
+                        </h4>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-2">
+                    <a th:href="@{/editClient/{id}(id=${client.id})}"> <button class="btn btn-primary btn-lg" type="button" style="background-color: #2a6f7e ; color: white"><i class="fas fa-edit" style="font-size:1.4rem;"></i> </button> </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <h5>Civilités</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Prénom</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.lastname}"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Nom</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.firstname}"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Date de naissance</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p  pattern="\d{1,2}/\d{1,2}/\d{4}" th:text="${date}"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Téléphone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.phoneNumber}"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Entreprise</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.company.name}"></p>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <h5>Adresse</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Numéro de rue</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.address.numberStreet}"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Rue</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.address.street}"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Code Postal</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.address.zip}"></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="lab">Ville</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p th:text="${client.address.city}"></p>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div></div>
+</div>
+<div th:include="fragments/footer :: footer"></div>

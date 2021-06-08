@@ -5,7 +5,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Table
@@ -14,19 +15,23 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty(message = "Ce champ ne peut être vide")
+    @NotEmpty(message = "Le champ reference ne peut être vide")
     @Size(min = 6,max = 6)
     @Column(nullable = false)
     private String reference;
-    @NotEmpty(message = "Ce champ ne peut être vide")
+
+    @NotEmpty(message = "Le champ label ne peut être vide")
     @Column(nullable = false)
     private String label;
-    @NotEmpty(message = "Ce champ ne peut être vide")
+
+    @NotEmpty(message = "Le champ description ne peut être vide")
     @Column(nullable = false)
     private String description;
+
     @Column(nullable = false)
     private float priceExclTax;
     private String picture;
+
     @PositiveOrZero
     @Column(nullable = false)
     private int stockQuantity;
@@ -45,8 +50,7 @@ public class Product implements Serializable {
     private Brand brand;
 
     @OneToMany(mappedBy = "product")
-    Set<ProductHasOrder> orderLines;
-
+    List<ProductHasOrder> orderLines;
 
     public Product() {
     }

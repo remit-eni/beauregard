@@ -1,8 +1,10 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,11 +14,21 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Size(min = 6,max = 6)
+    @Column(nullable = false)
     private String reference;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String label;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     private float priceExclTax;
     private String picture;
+    @PositiveOrZero
+    @Column(nullable = false)
     private int stockQuantity;
     private boolean hasBeenOrdered;
 

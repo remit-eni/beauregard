@@ -18,8 +18,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String reference;
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm")
     private LocalDateTime creationDate;
 
     @ManyToOne
@@ -33,6 +32,8 @@ public class Order implements Serializable {
     public Order() {
     }
 
+
+
     public Order(String reference, LocalDateTime creationDate, Client client) {
         this.reference = reference;
         this.creationDate = creationDate;
@@ -41,6 +42,10 @@ public class Order implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getReference() {

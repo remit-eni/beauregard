@@ -75,50 +75,15 @@ public class ProductController {
         return "redirect:/productList";
     }
 
-
-
-    /*@RequestMapping(value = {"/addProduct"}, method = RequestMethod.GET)
-    public String showAddProductPage(Model model) {
-
-        ProductForm productForm = new ProductForm();
-        model.addAttribute("productForm", productForm);
-
-        return "addProduct";
-    }
-
-    @RequestMapping(value = {"/addProduct"}, method = RequestMethod.POST)
-    public String saveProduct(Model model, @ModelAttribute("productForm") ProductForm productForm) {
-        List<Category> categories = catRepo.findAll();
-
-        String reference = productForm.getReference();
-        String label = productForm.getLabel();
-        String description = productForm.getDescription();
-        Float priceExclTax = productForm.getPriceExclTax();
-        String picture = productForm.getPicture();
-        int stockQuantity = productForm.getStockQuantity();
-        Category category = productForm.getCategory();
-        Brand brand = productForm.getBrand();
-        VAT vat = productForm.getVat();
-
-
-        if (reference != null && reference.length() > 0 //
-                && label != null && label.length() > 0) {
-            Product newProduct = new Product(reference, label, description, priceExclTax, picture, stockQuantity, false, category, vat, brand);
-            products.add(newProduct);
-
-            return "redirect:/productList";
-        }
-
-        model.addAttribute("errorMessage", errorMessage);
-        return "addProduct";
-    }*/
-
     @GetMapping("/editProduct/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Product product = productRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
 
         model.addAttribute("product", product);
+        model.addAttribute("categories", catRepo.findAll());
+        model.addAttribute("brands", brandRepo.findAll());
+        model.addAttribute("vats",vatRepo.findAll());
         return "updateProduct";
     }
 

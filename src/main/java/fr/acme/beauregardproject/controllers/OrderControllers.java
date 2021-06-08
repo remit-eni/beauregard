@@ -3,7 +3,7 @@ package fr.acme.beauregardproject.controllers;
 import fr.acme.beauregardproject.entities.Order;
 import fr.acme.beauregardproject.repositories.ClientRepository;
 import fr.acme.beauregardproject.repositories.OrderRepository;
-import fr.acme.beauregardproject.repositories.ProductRepository;
+import fr.acme.beauregardproject.repositories.ProductHasOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +23,12 @@ public class OrderControllers {
     private static List<Order> orders = new ArrayList<Order>();
     private final ClientRepository clientRepo;
     private final OrderRepository orderRepo;
-    private final ProductRepository productRepo;
+    private final ProductHasOrderRepository productHasOrderRepo;
     @Autowired
-    public OrderControllers(ClientRepository clientRepo, OrderRepository orderRepo, ProductRepository productRepo) {
+    public OrderControllers(ClientRepository clientRepo, OrderRepository orderRepo, ProductHasOrderRepository productHasOrderRepo) {
         this.clientRepo = clientRepo;
         this.orderRepo = orderRepo;
-        this.productRepo = productRepo;
+        this.productHasOrderRepo = productHasOrderRepo;
     }
 
     @GetMapping("/orderPage")
@@ -44,7 +44,7 @@ public class OrderControllers {
     public String showCreateOrder(Order order, Model model) {
 
         model.addAttribute("clients", clientRepo.findAll());
-        model.addAttribute("product", productRepo.findAll());
+        model.addAttribute("product", productHasOrderRepo.findAll());
 
         return "createOrderPage";
     }
@@ -67,17 +67,19 @@ public class OrderControllers {
 
         model.addAttribute("order", order);
         model.addAttribute("clients", clientRepo.findAll());
-        model.addAttribute("product", productRepo.findAll());
+        // model.addAttribute("product", productHasOrderRepo.findAll());
+        order.setCreationDate(order.getCreationDate());
         return "updateOrderPage";
     }
 
 
     @PostMapping("/updateOrderPage/{id}")
-    public String saveOrder(@PathVariable("id") long id, @Valid Order order,
+    public String updateOrderPage(@PathVariable("id") long id, @Valid Order order,
                             BindingResult result, Model model) {
+        order.setCreationDate(order.getCreationDate());
         if (result.hasErrors()) {
             order.setId(id);
-            return "orderPage";
+            return "updateOrderPage";
         }
 
         orderRepo.save(order);

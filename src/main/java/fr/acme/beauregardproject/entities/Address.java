@@ -1,6 +1,7 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,9 +11,17 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String numberStreet;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String street;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String city;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String zip;
 
     @OneToMany(mappedBy = "address")

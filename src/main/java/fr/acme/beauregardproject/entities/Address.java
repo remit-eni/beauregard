@@ -93,7 +93,7 @@ public class Address implements Serializable {
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", zip='" + zip + '\'' +
-                ", clients=" + clients +
+//                ", clients=" + clients +
                 '}';
     }
 }

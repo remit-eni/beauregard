@@ -2,7 +2,9 @@ package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 @Entity
@@ -33,7 +35,7 @@ public class Client implements Serializable {
     private Company company;
 
     @OneToMany(mappedBy = "client")
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 
     public Client() {
     }
@@ -160,10 +162,9 @@ public class Client implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", ordered=" + ordered +
                 ", address=" + address +
-                ", user=" + user +
-                ", company=" + company +
+//                ", user=" + user +
+//                ", company=" + company +
                 ", orders=" + orders +
                 '}';
     }
-
 }

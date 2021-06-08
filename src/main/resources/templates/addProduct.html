@@ -1,0 +1,115 @@
+<div th:include="fragments/head :: head"></div>
+<div th:include="fragments/navbar :: navbar"></div>
+<div id="background"></div>
+<div id="title">Ajouter un produit</div>
+<div class="container">
+    <hr>
+
+    <form action="#" th:action="@{/addProduct}" th:object="${product}" method="post">
+        <div class="form-group row">
+            <label for="reference" class="col-sm-2 col-form-label">Référence</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{reference}" id="reference" name="reference"
+                       placeholder="Reference" th:required="required"/>
+                <span th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="label" class="col-sm-2 col-form-label">Label</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{label}" id="label" name="label"
+                       placeholder="Label" th:required="required"/>
+                <span th:if="${#fields.hasErrors('label')}" th:errors="*{label}"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{description}" id="description" name="description"
+                       placeholder="Description" th:required="required"/>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="priceExclTax" class="col-sm-2 col-form-label">Prix HT</label>
+            <div class="col-sm-10">
+                <input type="number" min="0" step="100" class="form-control" th:field="*{priceExclTax}" id="priceExclTax" name="priceExclTax"
+                       placeholder="Prix HT" th:required="required"/>
+                <span th:if="${#fields.hasErrors('priceExclTax')}" th:errors="*{priceExclTax}"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="picture" class="col-sm-2 col-form-label">Photo</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{picture}" id="picture" name="picture"
+                       placeholder="Photo"/>
+                <span th:if="${#fields.hasErrors('picture')}" th:errors="*{picture}"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="priceExclTax" class="col-sm-2 col-form-label">Stock</label>
+            <div class="col-sm-10">
+                <input type="number" min="0" step="10" class="form-control" th:field="*{stockQuantity}" id="stockQuantity"
+                       name="stockQuantity"
+                       placeholder="Stock" th:required="required"/>
+                <span th:if="${#fields.hasErrors('stockQuantity')}" th:errors="*{stockQuantity}"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="categorie" class="col-sm-2 col-form-label">Categorie</label>
+            <div class="col-sm-10">
+                <select class="form-control selective" th:field="*{category}" required="required" id="categorie" name="categorie">
+                    <option th:each="category : ${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.label}"></option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="vat" class="col-sm-2 col-form-label">TVA</label>
+            <div class="col-sm-10">
+                <select class="form-control selective" th:field="*{vat}" required="required" id="vat" name="vat">
+                    <option th:each="vat : ${vats}"
+                            th:value="${vat.id}"
+                            th:text="${vat.name}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="brand" class="col-sm-2 col-form-label">Marque</label>
+            <div class="col-sm-10">
+                <select class="form-control selective" th:field="*{brand}" required="required" id="brand" name="brand">
+                    <option th:each="brand : ${brands}"
+                            th:value="${brand.id}"
+                            th:text="${brand.label}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="float-right">
+                    <button type="submit" class="btn badge-success">Ajouter</button>
+                    <a th:href= "@{/productList}" type="button" id="resetButton" class="btn btn-danger">Annuler</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+
+    <div th:if="${errorMessage}" th:utext="${errorMessage}"
+         style="color:red;font-style:italic;">
+        ...
+    </div>
+</div>
+<div th:include="fragments/footer :: footer"></div>

@@ -1,14 +1,11 @@
 package fr.acme.beauregardproject.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Entity
 @Table (name = "command")
@@ -19,8 +16,7 @@ public class Order implements Serializable {
     private Long id;
     private String reference;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm")
     private LocalDateTime creationDate;
 
     @ManyToOne
@@ -42,6 +38,10 @@ public class Order implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getReference() {

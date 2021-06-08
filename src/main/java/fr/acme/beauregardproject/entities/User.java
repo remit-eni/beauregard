@@ -24,6 +24,10 @@ public class User implements Serializable {
     private List<Client> clients;
 
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     public User() {
     }
 
@@ -103,6 +107,14 @@ public class User implements Serializable {
 
     public void setClients(List<Client> clients) {
         this.clients = clients;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override

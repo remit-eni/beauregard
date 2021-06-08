@@ -100,9 +100,9 @@ public class ClientController {
 
     @GetMapping("/productCard/{id}")
     public String getProductCard(@PathVariable("id") long id, Model model) {
-        Product produit1 = new Product();
+        /* Product produit1 = new Product();
 
-      /*  float tva = produit1.getVat().getRate();
+       float tva = produit1.getVat().getRate();
         float pht=produit1.getPriceExclTax();
         float result= pht *(1+tva);*/
         Product product = productRepository.findById(id)

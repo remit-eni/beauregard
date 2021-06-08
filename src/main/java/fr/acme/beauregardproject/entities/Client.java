@@ -6,7 +6,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 @Entity
@@ -17,30 +19,31 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @Size(min = 3, max = 15)
     private String firstname;
 
-    @NotEmpty
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @Size(min = 3, max = 15)
     private String lastname;
 
-    @NotEmpty
+    @NotEmpty(message = "Le champ email ne peut être vide")
     @Size(min = 3, max = 50)
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "Le champ password ne peut être vide")
     @Size(min = 8, max = 30)
     private String password;
 
-    @NotEmpty
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
 
-    @NotEmpty
+    @NotEmpty(message = "Le champ phoneNumber ne peut être vide")
     @Size(min=10, max=15)
     private String phoneNumber;
 
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @Column(columnDefinition = "boolean default false")
     private boolean ordered;
 
@@ -58,7 +61,7 @@ public class Client implements Serializable {
     private Company company;
 
     @OneToMany(mappedBy = "client")
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 
     public Client() {
     }
@@ -184,10 +187,9 @@ public class Client implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", ordered=" + ordered +
                 ", address=" + address +
-                ", user=" + user +
-                ", company=" + company +
+//                ", user=" + user +
+//                ", company=" + company +
                 ", orders=" + orders +
                 '}';
     }
-
 }

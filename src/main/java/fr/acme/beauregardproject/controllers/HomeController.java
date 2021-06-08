@@ -20,5 +20,6 @@ public class HomeController {
         List<Client> clients=clientRepository.findTheFirstClient();
         model.addAttribute("clients", clients);
         return "homePage";
+
     }
 }

@@ -5,6 +5,7 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
+
                     <li  style="  font-size: large"  class="nav-item"><a  class="nav-link" th:href="@{/home}">Home</a></li>
                     <li  style="  font-size: large"  class="nav-item"><a  class="nav-link" th:href="@{|/clientPage|}">Clients</a></li>
                     <li  style="  font-size: large"  class="nav-item"><a  class="nav-link" th:href="@{|/productList|}">Catalogue</a></li>
@@ -19,6 +20,22 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                         <h4>Se déconnecter<i class="fa fa-lock"></i></h4>
+                    <li  style="  font-size: large"  class="nav-item"><a  class="nav-link" th:href="@{/}">Home</a></li>
+                    <li style="font-size: large" class="nav-item dropdown">
+                        <a  class="nav-link dropdown-toggle" th:href="@{|/clientPage|}"  role="button" data-toggle="dropdown" aria-haspopup="true" >Clients</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="@{/clientPage}">Liste de clients</a>
+                            <a class="dropdown-item" href="@{/clientForm}">Ajouter un client</a>
+                            <a class="dropdown-item" href="@{/editClient}">Editer client</a>
+                        </div>
+                    </li>
+                    <li style="font-size: large" class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle"  th:href="@{|/productList|}"  role="button" data-toggle="dropdown" aria-haspopup="true" >Catalogue</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                        <a class="dropdown-item" href="@{/productList}">Liste de produits</a>
+                        <a class="dropdown-item" href="@{/addProduct}">Ajouter un produit</a>
+                        <a class="dropdown-item" href="@{/editProduct}">Modifier un produit</a>
+>>>>>>> 07ffa0a9c5d24fad7e0d10cdfafe62cdb1ab25cc
                     </div>
                     <div class="modal-body">
                         <p><i class="fa fa-question-circle"></i>Voulez vous vraiment vous déconnecter ?<br /></p>

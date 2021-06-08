@@ -1,6 +1,7 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +13,11 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String label;
+    @NotEmpty(message = "Ce champ ne peut être vide")
+    @Column(nullable = false)
     private String description;
 
 
@@ -67,7 +72,6 @@ public class Category implements Serializable {
                 "id=" + id +
                 ", label='" + label + '\'' +
                 ", description='" + description + '\'' +
-                ", products=" + products +
                 '}';
     }
 }

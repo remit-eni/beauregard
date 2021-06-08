@@ -1,6 +1,8 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +15,9 @@ public class Company implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty
+    @Size(min = 3, max = 15)
     private String name;
 
     @OneToMany(mappedBy = "company")

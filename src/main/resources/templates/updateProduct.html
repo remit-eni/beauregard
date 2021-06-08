@@ -4,7 +4,6 @@
 <div id="title">Modifier un produit</div>
 <div class="container">
     <hr>
-
     <form th:action="@{/updateProduct/{id}(id=${product.id})}"
           th:object="${product}" method="POST">
         <div class="form-group row">

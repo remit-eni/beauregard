@@ -1,6 +1,10 @@
 package fr.acme.beauregardproject.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,14 +18,36 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
+    @Size(min = 3, max = 15)
     private String firstname;
+
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
+    @Size(min = 3, max = 15)
     private String lastname;
+
+    @NotEmpty(message = "Le champ email ne peut être vide")
+    @Size(min = 3, max = 50)
     private String email;
+
+    @NotEmpty(message = "Le champ password ne peut être vide")
+    @Size(min = 8, max = 30)
     private String password;
+
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
+
+    @NotEmpty(message = "Le champ phoneNumber ne peut être vide")
+    @Size(min=10, max=15)
     private String phoneNumber;
+
+    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
+    @Column(columnDefinition = "boolean default false")
     private boolean ordered;
 
+    @NotEmpty
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
     private Address address;
@@ -40,7 +66,7 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String firstname, String lastname, String email, String password, Date birthdate, String phoneNumber, boolean ordered, Address address, User user, Company company) {
+    public Client(String firstname, String lastname, String email, String password,Date birthdate, String phoneNumber, boolean ordered, Address address, User user, Company company) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -64,7 +90,6 @@ public class Client implements Serializable {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
-
 
     public Long getId() {
         return id;

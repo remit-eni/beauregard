@@ -1,16 +1,17 @@
 <div th:include="fragments/head :: head"></div>
 <div th:include="fragments/navbar :: navbar"></div>
-<div id="background"></div>
+<div id="background">
 <div id="title">Ajouter un client</div>
-<div class="container" >
+<div class="container">
     <hr>
-    <form action="#"  th:action="@{/addClient}" th:object="${client}" method="post">
+    <div style="margin-bottom: 5%">
+        <form action="#"  th:action="@{/addClient}" th:object="${client}" method="post">
         <h5>Civilités</h5>
         <div class="form-group row">
             <span th:errors="*{firstname}" th:if="${#fields.hasErrors('firstname')}"></span>
             <label  for="firstname" class="col-sm-2 col-form-label" >Prénom</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{firstname}" id="firstname" name="firstname" placeholder="Prénom" th:required="required"/>
+                <input type="text" class="form-control" th:field="*{firstname}" id="firstname" name="firstname" placeholder="Prénom" min="5"  max="30" th:required="required"/>
             </div>
         </div>
 
@@ -18,35 +19,42 @@
             <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
             <label for="lastname" class="col-sm-2 col-form-label" >Nom</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{lastname}" id="lastname" name="lastname" placeholder="Nom" th:required="required"/>
+                <input type="text" class="form-control" th:field="*{lastname}" id="lastname" name="lastname" min="5" max="30" placeholder="Nom" th:required="required"/>
             </div>
         </div>
         <div class="form-group row">
             <span th:if="${#fields.hasErrors('company')}" th:errors="*{company.name}"></span>
             <label for="company" class="col-sm-2 col-form-label" >Entreprise</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{company.name}" id="company" name="company" placeholder="Nom de l'entreprise" th:required="required"/>
+                <input type="text" class="form-control" th:field="*{company.name}" id="company" name="company" min="5" max="30" placeholder="Nom de l'entreprise" th:required="required"/>
             </div>
         </div>
         <div class="form-group row">
             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             <label for="email" class="col-sm-2 col-form-label" >Email</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" th:field="*{email}" id="email" name="email" placeholder="Adresse Email" th:required="required"/>
+                <input type="text" class="form-control" th:field="*{email}" id="email" name="email" min="8" max="50"  pattern="[^@\s]+@[^@\s]+" placeholder="Adresse Email" th:required="required"/>
             </div>
         </div>
-        <div class="form-group row">
+        <div class="form-group row" >
             <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-            <label for="password" class="col-sm-2 col-form-label" >Password</label>
+            <label for="show_hide_password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" th:field="*{password}" id="password" name="password" placeholder="Mot de passe" th:required="required"/>
+                <input class="input-group" id="show_hide_password" min="8" max="50" th:field="*{password}" type="password">
+                <div class="input-group-addon">
+                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                </div>
             </div>
+               <!-- <div class="input-group-append">
+                    <a class=input-group-text" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                </div>-->
+
         </div>
         <div class="form-group row">
-            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{client.phoneNumber}"></span>
             <label for="phoneNumber" class="col-sm-2 col-form-label" >Téléphone</label>
             <div class="col-sm-10">
-                <input type="tel" class="form-control" th:field="*{phoneNumber}" id="phoneNumber" name="phoneNumber" placeholder="Téléphone" th:required="required"/>
+                <input type="tel" class="form-control" th:field="*{phoneNumber}" id="phoneNumber" name="phoneNumber" pattern="[0-9]{5}"placeholder="Téléphone" th:required="required"/>
             </div>
         </div>
         <div class="form-group row">
@@ -57,18 +65,18 @@
             </div>
         </div>
         <hr>
- <h5>Adresse</h5>
+        <h5>Adresse</h5>
         <div class="form-group row">
             <div class="col">
                 <span th:if="${#fields.hasErrors('address.numberStreet')}" th:errors="*{address.numberStreet}"></span>
                 <label for="numberStreet" class="required">Numéro</label>
-                <input type="text" class="form-control" th:field="*{address.numberStreet}" id="numberStreet" name="numberStreet" placeholder="Numéro de rue" th:required="required" />
+                <input type="number" class="form-control" th:field="*{address.numberStreet}" id="numberStreet" name="numberStreet" min="1" max="5" placeholder="Numéro de rue" th:required="required" />
             </div>
             <div class="col">
                 <div >
                     <span th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}"></span>
                     <label for="street" class="required" >Rue</label>
-                    <input type="text" class="form-control" th:field="*{address.street}" id="street" name="street" placeholder="Libellé de rue" th:required="required"/>
+                    <input type="text" class="form-control" th:field="*{address.street}" id="street" name="street" placeholder="Libellé de rue" min="5" max="150" th:required="required"/>
                 </div>
             </div>
         </div>
@@ -81,21 +89,39 @@
             <div class="col">
                 <span th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
                 <label for="city">Ville</label>
-                <input type="text" class="form-control" th:field="*{address.city}" id="city" name="city" placeholder="Ville"/>
+                <input type="text" class="form-control" th:field="*{address.city}" id="city" name="city" min="3" max="50" placeholder="Ville"/>
             </div>
-        </div> -->
+        </div>
         <hr>
         <div class="form-group">
             <div class="col-sm-12">
                 <div class="float-right">
-                    <button type="submit" class="btn" style="background-color: #1f75ec ; color: white">Envoyer</button>
-                    <button type="button" id="resetButton" class="btn" style="background-color: #1f75ec ; color: white">Reset</button>
+                    <button type="submit" class="btn" style="background-color: #202326 ; color: white">Envoyer</button>
                 </div>
             </div>
         </div>
     </form>
+    </div>
 
+<div style="padding: 3%; font-weight: bold"><a style="color: #202326;" th:href = "@{/clientPage}">Retour à la liste des clients</a></div>
 
-    <a th:href = "@{/clientPage}"> Back to Client List</a>
 </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if($('#show_hide_password input').attr("type") == "text"){
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass( "fa-eye-slash" );
+                $('#show_hide_password i').removeClass( "fa-eye" );
+            }else if($('#show_hide_password input').attr("type") == "password"){
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass( "fa-eye-slash" );
+                $('#show_hide_password i').addClass( "fa-eye" );
+            }
+        });
+    });
+</script>
 <div th:include="fragments/footer :: footer"></div>
+

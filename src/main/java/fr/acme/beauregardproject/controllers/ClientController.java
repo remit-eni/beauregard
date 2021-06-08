@@ -1,11 +1,9 @@
 package fr.acme.beauregardproject.controllers;
 
-import fr.acme.beauregardproject.entities.Address;
 import fr.acme.beauregardproject.entities.Client;
-import fr.acme.beauregardproject.entities.Company;
-import fr.acme.beauregardproject.repositories.AddressRepository;
+import fr.acme.beauregardproject.entities.Product;
 import fr.acme.beauregardproject.repositories.ClientRepository;
-import fr.acme.beauregardproject.repositories.CompanyRepository;
+import fr.acme.beauregardproject.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,14 +23,14 @@ public class ClientController {
 
     @Autowired
     private ClientRepository clientRepository;
-    private AddressRepository addressRepository;
-    private CompanyRepository companyRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/clientPage")
     public String getAllClient(@ModelAttribute(value="clientList") ArrayList clientList, Model model) {
         List<Client> clients = clientRepository.findAll();
         model.addAttribute("clientList",  clients);
-        model.addAttribute("client",  clientRepository.getOne(1L));
+        model.addAttribute("client",  clientRepository.findById(1L));
 
         return "clientPage";
     }
@@ -56,7 +55,7 @@ public class ClientController {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid client Id:" + id));
         clientRepository.delete(client);
-       return "redirect:/clientPage";
+        return "redirect:/clientPage";
     }
 
     @GetMapping("/editClient/{id}")
@@ -69,7 +68,7 @@ public class ClientController {
 
     @PostMapping("/updateClient/{id}")
     public String updateClient(@Valid @ModelAttribute("client") Client client,@PathVariable long id,
-                             BindingResult result, Model model) {
+                               BindingResult result, Model model) {
         if (result.hasErrors()) {
             client.setId(id);
             return "updateClientForm";
@@ -77,4 +76,41 @@ public class ClientController {
         clientRepository.save(client);
         return "updateClientForm";
     }
+/*
+    GetMapping("/searchClient")
+    public String searchClient(@Valid ){
+
+    }*/
+
+    @GetMapping("/clientProfile/{id}")
+    public String getClientProfile(@PathVariable("id") long id, Model model) {
+
+        Client client = clientRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid client Id:" + id));
+        Date sDate1=client.getBirthdate();
+        SimpleDateFormat formater = null;
+        formater =new SimpleDateFormat("dd-MM-yyyy");
+        formater.format(sDate1);
+
+        //   String strDate = dateFormat.format(client.birthdate);
+        model.addAttribute("client", client);
+        model.addAttribute("date", sDate1);
+        return "clientFiche";
+    }
+
+    @GetMapping("/productCard/{id}")
+    public String getProductCard(@PathVariable("id") long id, Model model) {
+        /* Product produit1 = new Product();
+
+       float tva = produit1.getVat().getRate();
+        float pht=produit1.getPriceExclTax();
+        float result= pht *(1+tva);*/
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
+
+        model.addAttribute("product", product);
+      //  model.addAttribute("result", result);
+        return "productFiche";
+    }
+
 }

@@ -26,7 +26,6 @@ public class LoginController {
         return modelAndView;
     }
 
-
     @RequestMapping(value="/registration", method = RequestMethod.GET)
     public ModelAndView registration(){
         ModelAndView modelAndView = new ModelAndView();

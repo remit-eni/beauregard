@@ -1,10 +1,10 @@
 package fr.acme.beauregardproject.repositories;
 
-import fr.acme.beauregardproject.entities.User;
+import fr.acme.beauregardproject.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-    @Repository
-    public interface LoginRepository extends JpaRepository <User, Long> {
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    }
+}

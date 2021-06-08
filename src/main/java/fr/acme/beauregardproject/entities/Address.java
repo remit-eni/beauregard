@@ -1,6 +1,8 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,11 +12,21 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 50)
+
+    @NotEmpty
+    @Size(min = 1, max = 5)
     private String numberStreet;
-    @Column(length=50)
+
+    @NotEmpty
+    @Size(min = 3, max = 150)
     private String street;
+
+    @NotEmpty
+    @Size(min = 3, max = 15)
     private String city;
+
+    @NotEmpty
+    @Column(columnDefinition = "5")
     private String zip;
 
     @OneToMany(mappedBy = "address")

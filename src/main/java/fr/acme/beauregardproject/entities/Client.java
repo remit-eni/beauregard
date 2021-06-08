@@ -1,6 +1,10 @@
 package fr.acme.beauregardproject.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -13,17 +17,34 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
+    @Size(min = 3, max = 15)
     private String firstname;
+
+    @NotEmpty
+    @Size(min = 3, max = 15)
     private String lastname;
+
+    @NotEmpty
+    @Size(min = 3, max = 50)
     private String email;
+
+    @NotEmpty
+    @Size(min = 8, max = 30)
     private String password;
 
-    @Column
-    @Temporal(TemporalType.DATE)
+    @NotEmpty
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
+
+    @NotEmpty
+    @Size(min=10, max=15)
     private String phoneNumber;
+
+    @Column(columnDefinition = "boolean default false")
     private boolean ordered;
 
+    @NotEmpty
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
     private Address address;
@@ -66,7 +87,6 @@ public class Client implements Serializable {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
-
 
     public Long getId() {
         return id;

@@ -53,7 +53,7 @@
                 <span th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span>
             </div>
         </div>
-
+       <input type="hidden" th:field="*{creationDate}" id="creationDate" name="creationDate"/>
         <div class="form-group row">
             <label for="reference" class="col-sm-2 col-form-label">Client</label>
             <div class="col-sm-10">

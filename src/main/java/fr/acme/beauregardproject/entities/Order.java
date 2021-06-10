@@ -16,7 +16,7 @@ public class Order implements Serializable {
     private Long id;
     private String reference;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime creationDate;
 
     @ManyToOne

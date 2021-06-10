@@ -68,7 +68,6 @@ public class OrderControllers {
         model.addAttribute("order", order);
         model.addAttribute("clients", clientRepo.findAll());
         // model.addAttribute("product", productHasOrderRepo.findAll());
-        order.setCreationDate(order.getCreationDate());
         return "updateOrderPage";
     }
 
@@ -76,7 +75,6 @@ public class OrderControllers {
     @PostMapping("/updateOrderPage/{id}")
     public String updateOrderPage(@PathVariable("id") long id, @Valid Order order,
                             BindingResult result, Model model) {
-        order.setCreationDate(order.getCreationDate());
         if (result.hasErrors()) {
             order.setId(id);
             return "updateOrderPage";

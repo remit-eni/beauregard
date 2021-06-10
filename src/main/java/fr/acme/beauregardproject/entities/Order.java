@@ -74,7 +74,7 @@ public class Order implements Serializable {
                 "id=" + id +
                 ", reference='" + reference + '\'' +
                 ", creationDate=" + creationDate +
-                ", client=" + client +
+                //", client=" + client +
                 '}';
     }
 }

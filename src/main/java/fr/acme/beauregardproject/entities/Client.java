@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Client implements Serializable {
     private String lastname;
 
     @NotEmpty(message = "Le champ email ne peut être vide")
-    @Size(min = 3, max = 50)
+    @Pattern(regexp = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/")
     private String email;
 
     @NotEmpty(message = "Le champ password ne peut être vide")

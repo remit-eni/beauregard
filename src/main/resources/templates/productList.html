@@ -46,14 +46,14 @@
             </thead>
             <tbody>
             <tr class="tdB" th:each="product : ${products}">
-                <td th:utext="${product.picture}">...</td>
-                <td th:utext="${product.reference}">...</td>
-                <td th:utext="${product.label}">...</td>
-                <td th:utext="${product.description}">...</td>
-                <td th:utext="${product.priceExclTax} + ' €'" >...</td>
-                <td th:utext="${product.stockQuantity}">...</td>
-                <td th:utext="${product.brand.label}">...</td>
-                <td th:utext="${product.category.label}">...</td>
+                <td><img th:src="${product.picture} ?: @{/img/default-image.png}"></td>
+                <td th:utext="${product.reference}"></td>
+                <td th:utext="${product.label}"></td>
+                <td th:utext="${product.description}"></td>
+                <td th:utext="${product.priceExclTax} + ' €'" ></td>
+                <td th:utext="${product.stockQuantity}"></td>
+                <td th:utext="${product.brand.label}"></td>
+                <td th:utext="${product.category.label}"></td>
                 <td id="tdB">
                     <div id="he">
                         <a th:href="@{/editProduct/{id}(id=${product.id})}">

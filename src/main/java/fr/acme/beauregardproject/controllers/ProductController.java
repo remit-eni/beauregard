@@ -106,6 +106,21 @@ public class ProductController {
         return "redirect:/productList";
     }
 
+    @GetMapping("/productCard/{id}")
+    public String getProductCard(@PathVariable("id") long id, Model model) {
+        /* Product produit1 = new Product();
+
+       float tva = produit1.getVat().getRate();
+        float pht=produit1.getPriceExclTax();
+        float result= pht *(1+tva);*/
+        Product product = productRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
+
+        model.addAttribute("product", product);
+        //  model.addAttribute("result", result);
+        return "productFiche";
+    }
+
 
 }
 

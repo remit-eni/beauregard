@@ -48,7 +48,7 @@
             <td id="tdB"><div id="he">
                 <a th:href="@{/clientProfile/{id}(id=${client.id})}"> <button class="btn btn-primary btn-lg" type="button" style="background-color: #2a6f7e ; color: white"><i class="fas fa-eye" style="font-size:1.4rem;"></i> </button> </a>
                 <a th:href="@{/editClient/{id}(id=${client.id})}"> <button class="btn btn-primary btn-lg" type="button" style="background-color: #2a6f7e ; color: white"><i class="fas fa-edit" style="font-size:1.4rem;"></i> </button> </a>
-                <a > <button class="btn btn-primary btn-lg" id="deleteButton" type="button" style="background-color: #2a6f7e ; color: white"><i class="fas fa-trash-alt" style="font-size:1.4rem;"></i> </button> </a>
+                <a th:href="@{/deleteClient/{id}(id=${client.id})}"> <button class="btn btn-primary btn-lg" id="deleteButton" type="button" style="background-color: #2a6f7e ; color: white"><i class="fas fa-trash-alt" style="font-size:1.4rem;"></i> </button> </a>
             </div>
             </td>
             <!-- th:href="@{/deleteClient/{id}(id=${client.id})}"-->
@@ -80,7 +80,6 @@
         </div>
     </div>
 </div>
-<div th:include="fragments/footer :: footer"></div>
 <script>
     $('#deleteButton').on('click',function(event) {
         event.preventDefault();
@@ -90,3 +89,4 @@
 
     });
 </script>
+<div th:include="fragments/footer :: footer"></div>

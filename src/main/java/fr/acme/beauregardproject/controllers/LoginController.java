@@ -3,8 +3,6 @@ package fr.acme.beauregardproject.controllers;
 import fr.acme.beauregardproject.entities.User;
 import fr.acme.beauregardproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,8 +39,8 @@ public class LoginController {
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
             bindingResult
-                    .rejectValue("userName", "error.user",
-                            "There is already a user registered with the user name provided");
+                    .rejectValue("email", "error.user",
+                            "There is already a user registered with the email provided");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");

@@ -1,7 +1,9 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,14 +16,18 @@ public class User implements Serializable {
     private long id;
     private String firstname;
     private String lastname;
+
+    @Pattern(regexp = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$")
     private String email;
+
+    @Pattern(regexp = "^(?=.[0-9])(\\=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{8,}$")
     private String password;
     private String phoneNumber;
     private Boolean isAdmin;
     private Boolean isLoggedIn;
 
     @OneToMany(mappedBy = "user")
-    private List<Client> clients;
+    private List<Client> clients= new ArrayList<>();
 
 
     @OneToOne(fetch = FetchType.EAGER)

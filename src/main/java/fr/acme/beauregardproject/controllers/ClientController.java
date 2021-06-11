@@ -30,7 +30,7 @@ public class ClientController {
     public String getAllClient(@ModelAttribute(value="clientList") ArrayList clientList, Model model) {
         List<Client> clients = clientRepository.findAll();
         model.addAttribute("clientList",  clients);
-        model.addAttribute("client",  clientRepository.findById(1L));
+        model.addAttribute("client",  clientRepository.findById(1L).get());
 
         return "clientPage";
     }
@@ -53,7 +53,7 @@ public class ClientController {
     @GetMapping("/deleteClient/{id}")
     public String deleteClient(@PathVariable("id") long id, Model model) {
         Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid client Id:" + id));
+        .orElseThrow(() -> new IllegalArgumentException("Invalid client Id:" + id));
         clientRepository.delete(client);
         return "redirect:/clientPage";
     }
@@ -98,19 +98,6 @@ public class ClientController {
         return "clientFiche";
     }
 
-    @GetMapping("/productCard/{id}")
-    public String getProductCard(@PathVariable("id") long id, Model model) {
-        /* Product produit1 = new Product();
 
-       float tva = produit1.getVat().getRate();
-        float pht=produit1.getPriceExclTax();
-        float result= pht *(1+tva);*/
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
-
-        model.addAttribute("product", product);
-      //  model.addAttribute("result", result);
-        return "productFiche";
-    }
 
 }

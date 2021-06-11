@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,11 +18,11 @@ public class Company implements Serializable {
     private Long id;
 
     @NotEmpty
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 30)
     private String name;
 
     @OneToMany(mappedBy = "company")
-    private List<Client> clients;
+    private List<Client> clients = new ArrayList<>();
 
     public Company() {
     }

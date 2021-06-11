@@ -4,11 +4,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 @Entity
@@ -28,14 +28,13 @@ public class Client implements Serializable {
     private String lastname;
 
     @NotEmpty(message = "Le champ email ne peut être vide")
-    @Size(min = 3, max = 50)
+    @Pattern(regexp = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$")
     private String email;
 
     @NotEmpty(message = "Le champ password ne peut être vide")
     @Size(min = 8, max = 30)
     private String password;
 
-    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
 
@@ -43,11 +42,10 @@ public class Client implements Serializable {
     @Size(min=10, max=15)
     private String phoneNumber;
 
-    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @Column(columnDefinition = "boolean default false")
     private boolean ordered;
 
-    @NotEmpty
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
     private Address address;
@@ -186,9 +184,9 @@ public class Client implements Serializable {
                 ", birthdate=" + birthdate +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", ordered=" + ordered +
-                ", address=" + address +
-//                ", user=" + user +
-//                ", company=" + company +
+             //   ", address=" + address +
+             //    ", user=" + user +
+             //  ", company=" + company +
                 ", orders=" + orders +
                 '}';
     }

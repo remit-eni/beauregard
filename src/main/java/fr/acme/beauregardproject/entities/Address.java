@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,7 +36,7 @@ public class Address implements Serializable {
 
 
     @OneToMany(mappedBy = "address")
-    private List<Client> clients;
+    private List<Client> clients = new ArrayList<>();
 
     public Address() {
     }

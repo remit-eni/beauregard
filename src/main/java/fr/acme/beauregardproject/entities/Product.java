@@ -5,6 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +36,7 @@ public class Product implements Serializable {
     @PositiveOrZero
     @Column(nullable = false)
     private int stockQuantity;
+
     private boolean hasBeenOrdered;
 
     @ManyToOne
@@ -50,7 +52,7 @@ public class Product implements Serializable {
     private Brand brand;
 
     @OneToMany(mappedBy = "product")
-    List<ProductHasOrder> orderLines;
+    List<ProductHasOrder> orderLines = new ArrayList<>();
 
     public Product() {
     }

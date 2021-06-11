@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -20,9 +21,8 @@ public class Category implements Serializable {
     @Column(nullable = false)
     private String description;
 
-
     @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    private List<Product> products= new ArrayList<>();
 
     public Category() {
 

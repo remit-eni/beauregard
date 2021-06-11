@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class Order implements Serializable {
     private Client client;
 
     @OneToMany(mappedBy = "order")
-    List<ProductHasOrder> orderLines;
+    List<ProductHasOrder> orderLines= new ArrayList<>();
 
 
     public Order() {

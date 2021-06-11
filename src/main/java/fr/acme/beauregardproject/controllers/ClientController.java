@@ -30,7 +30,7 @@ public class ClientController {
     public String getAllClient(@ModelAttribute(value="clientList") ArrayList clientList, Model model) {
         List<Client> clients = clientRepository.findAll();
         model.addAttribute("clientList",  clients);
-        model.addAttribute("client",  clientRepository.findById(1L));
+        model.addAttribute("client",  clientRepository.findById(1L).get());
 
         return "clientPage";
     }

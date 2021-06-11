@@ -4,9 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table
@@ -17,6 +16,7 @@ public class Company implements Serializable {
     private Long id;
 
     @NotEmpty
+    @Column(nullable = false)
     @Size(min = 3, max = 15)
     private String name;
 

@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 @Entity
@@ -30,6 +29,7 @@ public class Client implements Serializable {
 
     @NotEmpty(message = "Le champ email ne peut être vide")
     @Pattern(regexp = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/")
+    @Column(nullable = false,unique = true)
     private String email;
 
     @NotEmpty(message = "Le champ password ne peut être vide")

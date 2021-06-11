@@ -1,10 +1,11 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table
@@ -12,9 +13,18 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty(message = "Le champ firstname ne peut être vide")
+    @Column(nullable = false)
     private String firstname;
+    @NotEmpty(message = "Le champ lastname ne peut être vide")
+    @Column(nullable = false)
     private String lastname;
+    @NotEmpty(message = "Le champ email ne peut être vide")
+    @Pattern(regexp = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/")
+    @Column(nullable = false,unique = true)
     private String email;
+    @NotEmpty(message = "Le champ password ne peut être vide")
+    @Column(nullable = false)
     private String password;
     private String phoneNumber;
     private Boolean isAdmin;

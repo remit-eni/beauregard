@@ -1,6 +1,7 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
@@ -16,8 +17,11 @@ public class ProductHasOrder implements Serializable {
     @ManyToOne
     @JoinColumn(name = "order_id")
     Order order;
-
+    @NotEmpty
+    @Column(nullable = false)
     private float price;
+    @NotEmpty
+    @Column(nullable = false)
     private int quantity;
 
     public ProductHasOrder() {

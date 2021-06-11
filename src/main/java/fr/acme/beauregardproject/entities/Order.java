@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +15,8 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Le champ référence ne peut être vide")
+    @Column(nullable = false)
     private String reference;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

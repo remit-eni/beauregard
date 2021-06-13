@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,12 +17,13 @@ public class VAT implements Serializable {
     @NotEmpty(message = "Ce champ ne peut être vide")
     @Column(nullable = false)
     private String name;
+
     @NotEmpty(message = "Ce champ ne peut être vide")
     @Column(nullable = false)
     private float rate;
 
     @OneToMany(mappedBy = "vat")
-    private List<Product> products;
+    private List<Product> products= new ArrayList<>();
 
     public VAT() {
 

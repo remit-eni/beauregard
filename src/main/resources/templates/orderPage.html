@@ -44,24 +44,29 @@
 <div th:include="fragments/navbar :: navbar"></div>
 <div id="background">
   <div id="title">Commande</div>
-  <div style="width: 125rem" class="container">
+  <div id="conteneur" class="container">
     <div style="margin-bottom: 30px">
       <div class="d-flex flex-row-reverse ">
+        <div id="addButton">
+          <a href="createOrderPage">
+            <button class="btn btn-default" type="button" style="font-size:2.5rem"><i class="fa fa-plus" aria-hidden="true"style="font-size:1.8rem;"></i>
+            </button>
+          </a>
+        </div>
         <div class="col-xs-8 col-xs-offset-8">
           <div class="input-group">
             <div class="input-group-btn search-panel">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span id="search_concept">Filtre par</span> <span class="caret"></span>
+                <span id="search_concept">Filtré par</span> <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Reference</a></li>
+                <li><a href="#">Référence</a></li>
                 <li><a href="#">Date</a></li>
                 <li><a href="#">Client</a></li>
               </ul>
             </div>
             <input type="hidden" name="search_param" value="all" id="search_param">
             <input type="text" class="form-control" name="x" placeholder="Recherchez...">
-
             <button class="btn btn-default" type="button"><i class="fas fa-search"
                                                              style="font-size:24px;"></i></button>
           </div>
@@ -76,20 +81,19 @@
         <th>Date</th>
         <th>Clients</th>
         <th >Action</th>
-
       </tr>
       </thead>
       <tbody>
       <tr class="tdB" th:each="order : ${orders}">
-        <td th:utext="${order.reference}">...</td>
-        <td th:utext="${order.creationDate}">...</td>
-        <td th:utext="${order.client.lastname}">...</td>
+        <td th:utext="${order.reference}"></td>
+        <td th:text="${#dates.format(order.creationDate, 'dd/MM/yyyy HH:mm')}"></td>
+        <td th:utext="${order.client.firstname}+' '+${order.client.lastname}"></td>
         <td id="tdB">
           <div id="he">
+            <a th:href="@{/orderCard/{id}(id=${order.id})}"> <button class="btn btn-primary btn-lg" type="button" style="background-color: #2a6f7e ; color: white"><i class="fas fa-eye" style="font-size:1.4rem;"></i> </button> </a>
             <a th:href="@{/editOrderPage/{id}(id=${order.id})}">
               <button class="btn btn-primary btn-lg" type="button"
-                      style="background-color: #2a6f7e ; color: white"><i class="fas fa-edit"
-                                                                          style="font-size:1.4rem;"></i>
+                      style="background-color: #2a6f7e ; color: white"><i class="fas fa-edit" style="font-size:1.4rem;"></i>
               </button>
             </a>
             <a th:href="@{/deleteOrderPage/{id}(id=${order.id})}">
@@ -105,14 +109,6 @@
       </tr>
       </tbody>
     </table>
-    <div id="addButton">
-      <a href="createOrderPage">
-        <button class="btn btn-default" type="button" style="font-size:2.5rem"><i class="fa fa-plus"
-                                                                                  aria-hidden="true"
-                                                                                  style="font-size:1.8rem;"></i>
-        </button>
-      </a>
-    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
       <div class="modal-dialog" role="document">

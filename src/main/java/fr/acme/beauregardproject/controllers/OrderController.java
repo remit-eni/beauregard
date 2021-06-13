@@ -1,9 +1,12 @@
 package fr.acme.beauregardproject.controllers;
 
 import fr.acme.beauregardproject.entities.Order;
+import fr.acme.beauregardproject.entities.Product;
+import fr.acme.beauregardproject.entities.ProductHasOrder;
 import fr.acme.beauregardproject.repositories.ClientRepository;
 import fr.acme.beauregardproject.repositories.OrderRepository;
 import fr.acme.beauregardproject.repositories.ProductHasOrderRepository;
+import fr.acme.beauregardproject.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +18,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
-public class OrderControllers {
+public class OrderController {
 
     private static List<Order> orders = new ArrayList<Order>();
     private final ClientRepository clientRepo;
     private final OrderRepository orderRepo;
     private final ProductHasOrderRepository productHasOrderRepo;
+
     @Autowired
-    public OrderControllers(ClientRepository clientRepo, OrderRepository orderRepo, ProductHasOrderRepository productHasOrderRepo) {
+    public OrderController(ClientRepository clientRepo, OrderRepository orderRepo, ProductHasOrderRepository productHasOrderRepo) {
         this.clientRepo = clientRepo;
         this.orderRepo = orderRepo;
         this.productHasOrderRepo = productHasOrderRepo;
@@ -36,7 +41,6 @@ public class OrderControllers {
 
         orders = orderRepo.findAll();
         model.addAttribute("orders", orders);
-
         return "orderPage";
     }
 
@@ -51,7 +55,7 @@ public class OrderControllers {
 
     @PostMapping("/createOrderPage")
     public String createOrder(@Valid Order order, BindingResult result) {
-        LocalDateTime dateDujour = LocalDateTime.now();
+        Date dateDujour = new Date();
         if (result.hasErrors()) {
             return "createOrderPage";
         }
@@ -92,5 +96,15 @@ public class OrderControllers {
         orderRepo.delete(order);
 
         return "redirect:/orderPage";
+    }
+
+    @GetMapping("/orderCard/{id}")
+    public String getOrderCard(@PathVariable("id") long id, Model model) {
+
+        Order order = orderRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid order Id:" + id));
+        model.addAttribute("products",productHasOrderRepo.findProducts());
+        model.addAttribute("order", order);
+        return "orderCard";
     }
 }

@@ -1,0 +1,77 @@
+<div th:include="fragments/head :: head"></div>
+<div th:include="fragments/navbar :: navbar"></div>
+<div id="background">
+    <div id="title"><p th:text="'Commande n° ' + ${order.reference}" /></div>
+    <div style="margin:1%; padding: 3%; text-align: center">
+        <div class="emp-profile" th:object="${order}">
+            <form style="text-align: center" method="post">
+                <div style="margin-bottom: 1%;" class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <icon class="fas fa-shopping-basket fa-4x"></icon>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-2">
+                        <a th:href="@{/editOrderPage/{id}(id=${order.id})}"> <button class="btn btn-primary btn-lg" type="button" style="background-color: #2a6f7e ; color: white"><i class="fas fa-edit" style="font-size:1.4rem;"></i> </button> </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="lab">Date de création</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${#dates.format(order.creationDate, 'dd/MM/yyyy HH:mm')}"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="lab">Référence</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${order.reference}"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="lab">Client</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${order.client.firstname}+' '+${order.client.lastname} "></p>
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-md-6">
+                                      <label class="lab">Prix TTC</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <p th:text="${result}"></p>
+                                    </div>
+                                  </div>-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="lab">Produits</label>
+                                    </div>
+                              <!--      <ul class="tdB" th:each="product : ${products}">
+                                        <li th:text="${product.product.label}"></li>
+                                        <li th:text="${product.product.brand.label}"></li>
+                                    </ul> -->
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div></div>
+</div>
+<div th:include="fragments/footer :: footer"></div>

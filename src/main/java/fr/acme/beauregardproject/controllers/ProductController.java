@@ -41,13 +41,6 @@ public class ProductController {
     @Value("${error.message}")
     private String errorMessage;
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String index(Model model) {
-
-        model.addAttribute("message", message);
-
-        return "index";
-    }
 
     @GetMapping("/productList")
     public String productList(Model model) {
@@ -104,6 +97,21 @@ public class ProductController {
         Product product = productRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user  Id:" + id));
         productRepo.delete(product);
         return "redirect:/productList";
+    }
+
+    @GetMapping("/productCard/{id}")
+    public String getProductCard(@PathVariable("id") long id, Model model) {
+        /*
+        Product produit1 = new Product();
+        float tva = produit1.getVat().getRate();
+        float pht=produit1.getPriceExclTax();
+        float result= pht *(1+tva);*/
+        Product product = productRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
+
+        model.addAttribute("product", product);
+        //  model.addAttribute("result", result);
+        return "productCard";
     }
 
 

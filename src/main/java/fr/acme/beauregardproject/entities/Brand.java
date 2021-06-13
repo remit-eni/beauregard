@@ -3,6 +3,7 @@ package fr.acme.beauregardproject.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +18,7 @@ public class Brand implements Serializable {
     private String label;
 
     @OneToMany(mappedBy = "brand")
-    private List<Product> products;
+    private List<Product> products= new ArrayList<>();
 
     public Brand() {
     }

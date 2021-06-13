@@ -28,7 +28,7 @@ public class Client implements Serializable {
     private String lastname;
 
     @NotEmpty(message = "Le champ email ne peut être vide")
-    @Pattern(regexp = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/")
+    @Pattern(regexp = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$")
     @Column(nullable = false,unique = true)
     private String email;
 
@@ -36,7 +36,6 @@ public class Client implements Serializable {
     @Size(min = 8, max = 30)
     private String password;
 
-    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthdate;
 
@@ -44,11 +43,9 @@ public class Client implements Serializable {
     @Size(min=10, max=15)
     private String phoneNumber;
 
-    @NotEmpty(message = "Le champ numberStreet ne peut être vide")
     @Column(columnDefinition = "boolean default false")
     private boolean ordered;
 
-    @NotEmpty
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
     private Address address;
@@ -187,9 +184,9 @@ public class Client implements Serializable {
                 ", birthdate=" + birthdate +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", ordered=" + ordered +
-                ", address=" + address +
-//                ", user=" + user +
-//                ", company=" + company +
+              // ", address=" + address +
+                ", user=" + user +
+               ", company=" + company +
                 ", orders=" + orders +
                 '}';
     }

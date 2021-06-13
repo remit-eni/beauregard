@@ -1,9 +1,9 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,13 +15,12 @@ public class Company implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @Size(min = 3, max = 30)
     @Column(nullable = false)
-    @Size(min = 3, max = 15)
     private String name;
 
     @OneToMany(mappedBy = "company")
-    private List<Client> clients;
+    private List<Client> clients = new ArrayList<>();
 
     public Company() {
     }
@@ -59,7 +58,7 @@ public class Company implements Serializable {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", clients=" + clients +
+             //   ", clients=" + clients +
                 '}';
     }
 }

@@ -8,7 +8,7 @@
         <div style="margin-bottom: 1%;" class="row">
           <div class="col-md-4">
             <div class="profile-img">
-              <img th:src="@{product.picture}" alt="Image produit" />
+              <img th:src="${product.picture} ?: @{/img/default-image.png}" alt="Image produit">
             <!--  <img src="https://img.bfmtv.com/c/630/420/b6b/9fb6cad2c407d32eedd65220d16a8.jpg" >-->
             </div>
           </div>
@@ -30,14 +30,6 @@
                 <hr>
                 <div class="row">
                   <div class="col-md-6">
-                    <label class="lab">Description</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p th:text="${product.description}"></p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
                     <label class="lab">Marque</label>
                   </div>
                   <div class="col-md-6">
@@ -57,17 +49,17 @@
                     <label class="lab">Prix hors taxe</label>
                   </div>
                   <div class="col-md-6">
-                    <p th:text="${product.priceExclTax}"></p>
+                    <p th:text="${product.priceExclTax} + ' €'" ></p>
                   </div>
                 </div>
-                <div class="row">
+              <!-- <div class="row">
                   <div class="col-md-6">
                     <label class="lab">Prix TTC</label>
                   </div>
                   <div class="col-md-6">
                     <p th:text="${result}"></p>
                   </div>
-                </div>
+                </div>-->
                 <div class="row">
                   <div class="col-md-6">
                     <label class="lab">Quantité en stock</label>
@@ -82,6 +74,14 @@
                   </div>
                   <div class="col-md-6">
                     <p th:text="${product.category.label}"></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class="lab">Description</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p th:text="${product.description}"></p>
                   </div>
                 </div>
                 <br>

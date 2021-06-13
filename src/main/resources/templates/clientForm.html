@@ -8,42 +8,41 @@
         <form action="#"  th:action="@{/addClient}" th:object="${client}" method="post">
         <h5>Civilités</h5>
         <div class="form-group row">
-            <span th:errors="*{firstname}" th:if="${#fields.hasErrors('firstname')}"></span>
+            <span class="text-danger" th:errors="*{firstname}" th:if="${#fields.hasErrors('firstname')}"></span>
             <label  for="firstname" class="col-sm-2 col-form-label" >Prénom</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{firstname}" id="firstname" name="firstname" placeholder="Prénom" min="5"  max="30" th:required="required"/>
             </div>
         </div>
-
         <div class="form-group row">
-            <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
             <label for="lastname" class="col-sm-2 col-form-label" >Nom</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{lastname}" id="lastname" name="lastname" min="5" max="30" placeholder="Nom" th:required="required"/>
             </div>
         </div>
         <div class="form-group row">
-            <span th:if="${#fields.hasErrors('company')}" th:errors="*{company.name}"></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('company')}" th:errors="*{company.name}"></span>
             <label for="company" class="col-sm-2 col-form-label" >Entreprise</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{company.name}" id="company" name="company" min="5" max="30" placeholder="Nom de l'entreprise" th:required="required"/>
             </div>
         </div>
         <div class="form-group row">
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             <label for="email" class="col-sm-2 col-form-label" >Email</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{email}" id="email" name="email" min="8" max="50"  pattern="[^@\s]+@[^@\s]+" placeholder="Adresse Email" th:required="required"/>
             </div>
         </div>
         <div class="form-group row" >
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-            <label for="show_hide_password" class="col-sm-2 col-form-label">Password</label>
+            <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            <label for="show_hide_password" class="col-sm-2 col-form-label">Mot de passe</label>
             <div class="col-sm-10">
-                <input class="input-group" id="show_hide_password" min="8" max="50" th:field="*{password}" type="password">
-                <div class="input-group-addon">
+                <input type="text" class="form-control" placeholder="Mot de passe" id="show_hide_password" min="8" max="50" th:field="*{password}" type="password">
+              <!--  <div class="input-group-addon">
                     <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                </div>
+                </div>-->
             </div>
                <!-- <div class="input-group-append">
                     <a class=input-group-text" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
@@ -51,14 +50,14 @@
 
         </div>
         <div class="form-group row">
-            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{client.phoneNumber}"></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{client.phoneNumber}"></span>
             <label for="phoneNumber" class="col-sm-2 col-form-label" >Téléphone</label>
             <div class="col-sm-10">
                 <input type="tel" class="form-control" th:field="*{phoneNumber}" id="phoneNumber" name="phoneNumber" pattern="[0-9]{5}"placeholder="Téléphone" th:required="required"/>
             </div>
         </div>
         <div class="form-group row">
-            <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></span>
+            <span class="text-danger" th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}"></span>
             <label for="birthdate" class="col-sm-2 col-form-label" >Date de naissance</label>
             <div class="col-sm-10">
                 <input type="date" class="form-control" th:field="*{birthdate}" id="birthdate" name="birthdate" th:required="required"/>
@@ -68,13 +67,13 @@
         <h5>Adresse</h5>
         <div class="form-group row">
             <div class="col">
-                <span th:if="${#fields.hasErrors('address.numberStreet')}" th:errors="*{address.numberStreet}"></span>
+                <span class="text-danger" th:if="${#fields.hasErrors('address.numberStreet')}" th:errors="*{address.numberStreet}"></span>
                 <label for="numberStreet" class="required">Numéro</label>
                 <input type="number" class="form-control" th:field="*{address.numberStreet}" id="numberStreet" name="numberStreet" min="1" max="5" placeholder="Numéro de rue" th:required="required" />
             </div>
             <div class="col">
                 <div >
-                    <span th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}"></span>
+                    <span class="text-danger" th:if="${#fields.hasErrors('address.street')}" th:errors="*{address.street}"></span>
                     <label for="street" class="required" >Rue</label>
                     <input type="text" class="form-control" th:field="*{address.street}" id="street" name="street" placeholder="Libellé de rue" min="5" max="150" th:required="required"/>
                 </div>
@@ -82,12 +81,12 @@
         </div>
         <div class="form-group row">
             <div class="col">
-                <span th:if="${#fields.hasErrors('address.zip')}" th:errors="*{address.zip}"></span>
+                <span class="text-danger"th:if="${#fields.hasErrors('address.zip')}" th:errors="*{address.zip}"></span>
                 <label for="zip" >Code Postal</label>
                 <input type="text" class="form-control" th:field="*{address.zip}" id="zip" name="zip" placeholder="Code postal"/>
             </div>
             <div class="col">
-                <span th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
+                <span class="text-danger" th:if="${#fields.hasErrors('address.city')}" th:errors="*{address.city}"></span>
                 <label for="city">Ville</label>
                 <input type="text" class="form-control" th:field="*{address.city}" id="city" name="city" min="3" max="50" placeholder="Ville"/>
             </div>
@@ -96,32 +95,17 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <div class="float-right">
+                    <a th:href="@{/clientPage}" type="button"><button class="btn" style="background-color: #202326 ; color: white">Annuler</button></a>
                     <button type="submit" class="btn" style="background-color: #202326 ; color: white">Envoyer</button>
                 </div>
             </div>
         </div>
     </form>
     </div>
-
 <div style="padding: 3%; font-weight: bold"><a style="color: #202326;" th:href = "@{/clientPage}">Retour à la liste des clients</a></div>
-
 </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $("#show_hide_password a").on('click', function(event) {
-            event.preventDefault();
-            if($('#show_hide_password input').attr("type") == "text"){
-                $('#show_hide_password input').attr('type', 'password');
-                $('#show_hide_password i').addClass( "fa-eye-slash" );
-                $('#show_hide_password i').removeClass( "fa-eye" );
-            }else if($('#show_hide_password input').attr("type") == "password"){
-                $('#show_hide_password input').attr('type', 'text');
-                $('#show_hide_password i').removeClass( "fa-eye-slash" );
-                $('#show_hide_password i').addClass( "fa-eye" );
-            }
-        });
-    });
+<script type="text/javascript" th:src="@{/js/script.js}">
 </script>
 <div th:include="fragments/footer :: footer"></div>
 

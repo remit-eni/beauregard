@@ -1,13 +1,11 @@
 package fr.acme.beauregardproject.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table
@@ -17,8 +15,8 @@ public class Company implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
     @Size(min = 3, max = 30)
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "company")
@@ -60,7 +58,7 @@ public class Company implements Serializable {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", clients=" + clients +
+             //   ", clients=" + clients +
                 '}';
     }
 }

@@ -4,9 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
-import java.util.Set;
+
 
 @Entity
 @Table
@@ -14,21 +14,30 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty(message = "Le champ 'Prénom' ne peut être vide.")
+    @Column(nullable = false)
     private String firstname;
+
+    @NotEmpty(message = "Le champ 'Nom' ne peut être vide.")
+    @Column(nullable = false)
     private String lastname;
 
+    @NotEmpty(message = "Le champ email ne peut être vide.")
+    @Column(nullable = false,unique = true)
     @Pattern(regexp = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$")
     private String email;
 
-    @Pattern(regexp = "^(?=.[0-9])(\\=.[a-z])(?=.[A-Z])(?=.[@#$%^&+=])(?=\\S+$).{8,}$")
+    @Pattern(regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$" , message="Le mot de passe doit comporter au minimum 8 caractères dont une lettre, un chiffre, une majuscule et un caractère spécial.")
+    @NotEmpty(message = "Le champ password ne peut être vide")
+    @Column(nullable = false)
     private String password;
+
     private String phoneNumber;
     private Boolean isAdmin;
     private Boolean isLoggedIn;
 
     @OneToMany(mappedBy = "user")
     private List<Client> clients= new ArrayList<>();
-
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
@@ -133,7 +142,7 @@ public class User implements Serializable {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", isAdmin=" + isAdmin +
                 ", isLoggedIn=" + isLoggedIn +
-                ", clients=" + clients +
+             //   ", clients=" + clients +
                 '}';
     }
 }

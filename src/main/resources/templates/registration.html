@@ -1,71 +1,86 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-  <title>Registration Form</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-<form th:action="@{/}" method="get">
-  <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+<div th:include="fragments/head :: head"></div>
+<form id="formReg" th:action="@{/login}" method="get">
+    <button id="msgReg" class="btn btn-md btn-warning btn-block" type="Submit">Se connecter</button>
 </form>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <form autocomplete="off" action="#" th:action="@{/registration}"
-            th:object="${user}" method="post" class="form-horizontal"
-            role="form">
-        <h2>Registration Form</h2>
-        <div class="form-group">
-          <div class="col-sm-9">
-            <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"
-                   class="validation-message"></label>
-            <input type="text" th:field="*{firstname}" placeholder="Name"
-                   class="form-control"/>
-          </div>
+<div id="backgroundReg">
+     <div id="backgroundHome">
+        <div id='logoHome'><img id="logoHomeP"  th:src="@{/img/logo-acme.png}" alt="Logo"/></div>
+        <div id="titleHome">Inscription</div>
+        <div class="container">
+            <div class="text-success" id="success" th:text="${successMessage}"></div>
+            <form autocomplete="off" action="#" th:action="@{/registration}"
+                  th:object="${user}" method="post" class="form-signin" style="width:30%;margin:auto"
+                  role="form">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                    <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"
+                          class="text-danger"></span>
+                        <input type="text" th:field="*{firstname}" placeholder="Prénom" min="3" max="50"
+                               class="form-control" th:required="required"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                    <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"
+                          class="text-danger"></span>
+                        <input type="text" th:field="*{lastname}"
+                               placeholder="Nom" class="form-control" min="3" max="50" th:required="required"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                          class="text-danger"></span>
+                        <input type="email" th:field="*{email}" placeholder="Email" min="5" max="100"
+                               class="form-control" th:required="required"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                          class="text-danger"></span>
+                        <input type="password" th:field="*{password}"
+                               placeholder="Mot de passe" class="form-control" min="8" max="50" th:required="required"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="alignButton">
+                            <button type="submit" class="btn btn-primary btn-xs" id="bttn-auth">
+                                Envoyer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class="form-group">
-          <div class="col-sm-9">
-            <label th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"
-                   class="validation-message"></label>
-            <input type="text" th:field="*{lastname}"
-                   placeholder="Last Name" class="form-control"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-9">
-            <input type="text" th:field="*{email}" placeholder="Email"
-                   class="form-control"/> <label
-                  th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-                  class="validation-message"></label>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-9">
-            <input type="password" th:field="*{password}"
-                   placeholder="Password" class="form-control"/> <label
-                  th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-                  class="validation-message"></label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-9">
-            <button type="submit" class="btn btn-primary btn-block">Register User</button>
-          </div>
-        </div>
-
-        <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-
-      </form>
     </div>
-  </div>
 </div>
-
 </body>
 </html>
+<!-- <div th:include="fragments/head :: head"></div>
+<div id="background">
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Adresse email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" min="10" max="50" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Mot de passe</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" min="8" max="50" placeholder="Mot de passe">
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="float-right">
+                        <button type="submit" class="btn" style="background-color: #1f75ec ; color: white">Envoyer</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
+-->

@@ -17,8 +17,8 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
+    @RequestMapping(value={"/login"}, method = RequestMethod.GET)
+    public ModelAndView login(@Valid User user, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
@@ -40,13 +40,13 @@ public class LoginController {
         if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
-                            "There is already a user registered with the email provided");
+                            "Un utilisateur avec cette adresse email existe déjà.");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("registration");
         } else {
             userService.saveUser(user);
-            modelAndView.addObject("successMessage", "User has been registered successfully");
+            modelAndView.addObject("successMessage", "L'utilisateur a bien été sauvegardé.");
             modelAndView.addObject("user", new User());
             modelAndView.setViewName("registration");
 

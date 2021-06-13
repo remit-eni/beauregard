@@ -1,25 +1,31 @@
 <div th:include="fragments/head :: head"></div>
-<div id="background">
-    <div class="container">
-    <br/><br/>
-    <form name=f th:action="@{/login}" method="POST" class="form-signin" style="width:30%;margin:auto">
-        <h3 class="form-signin-heading">Connexion</h3>
-        <br/>
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: medium; color: #FF1C19;">Email or password is invalid</p>
+<div id="backgroundLog">
+    <div id="backgroundHome">
+        <div id='logoHome'><img id="logoHomeP" th:src="@{/img/logo-acme.png}" alt="Logo"/></div>
+        <div id="titleHome">Connexion</div>
+        <div class="container">
+            <form name=f th:action="@{/login}" method="post" class="form-signin" style="width:30%;margin:auto">
+                <div align="center" th:if="${param.error}">
+                    <p id="failMsg">L'email ou le mot de passe est invalide.</p>
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success">
+                    You have been logged out.
+                </div>
+                <div class="form-group">
+                  <!--  <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                          class="text-danger"></span> -->
+                    <input type="email" id="username" name="username" placeholder="Email" min="5" max="100" class="form-control" th:required="required"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Mot de passe" id="password" name="password" min="8" max="50" class="form-control" th:required="required"/>
+                </div>
+                <div class="form-group">
+                        <div class="alignButton">
+                            <button class="btn btn-primary btn-xs" id="bttn-auth" type="submit">Se connecter</button>
+                        </div>
+                </div>
+            </form>
         </div>
-        <div th:if="${param.logout}" class="alert alert-success">
-            You have been logged out.
-        </div>
-
-        <input type="text" id="username" name="username"  th:placeholder="Email"
-               class="form-control" /> <br/>
-        <input type="password"  th:placeholder="Password"
-               id="password" name="password" class="form-control" /> <br />
-
-
-        <button class="btn btn-lg btn-primary btn-block" type="Submit" th:text="Login"></button>
-    </form>
     </div>
 </div>
 </body>

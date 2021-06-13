@@ -17,6 +17,7 @@ public class VAT implements Serializable {
     @NotEmpty(message = "Ce champ ne peut être vide")
     @Column(nullable = false)
     private String name;
+
     @NotEmpty(message = "Ce champ ne peut être vide")
     @Column(nullable = false)
     private float rate;

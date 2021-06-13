@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -30,8 +31,49 @@
 
 <br/>
 
-<!-- Check if errorMessage is not null and not empty -->
 
 
 </body>
 </html>
+-->
+
+<div th:include="fragments/head :: head"></div>
+<div th:include="fragments/navbar :: navbar"></div>
+<div id="background">
+<div id="title">Modifier une commande</div>
+<div class="container">
+    <hr>
+    <form action="#" th:action="@{/updateOrderPage/{id}(id=${order.id})}" th:object="${order}" method="post">
+        <div class="form-group row">
+            <label for="reference" class="col-sm-2 col-form-label">Référence</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" th:field="*{reference}" id="reference" name="reference"
+                       placeholder="Reference" th:required="required"/>
+                <span th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span>
+            </div>
+        </div>
+       <input type="hidden" th:field="*{creationDate}" id="creationDate" name="creationDate"/>
+        <div class="form-group row">
+            <label for="reference" class="col-sm-2 col-form-label">Client</label>
+            <div class="col-sm-10">
+                <select class="form-control selective" th:field="*{client}" required="required" id="reference" name="reference">
+                    <option th:each="client : ${clients}"
+                            th:value="${client.id}"
+                            th:text="${client.firstname} +' '+${client.lastname}"></option>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="float-right">
+                    <a th:href="@{/orderPage}" type="button"><button class="btn" style="background-color: #202326 ; color: white">Annuler</button></a>
+                    <button type="submit" class="btn" style="background-color: #202326 ; color: white">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div style="padding: 3%; font-weight: bold"><a style="color: #202326;" th:href = "@{/orderPage}">Retour à la liste des commandes</a></div>
+</div>
+</div>
+<div th:include="fragments/footer :: footer"></div>

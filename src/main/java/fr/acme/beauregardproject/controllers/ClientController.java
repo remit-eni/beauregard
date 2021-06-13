@@ -76,11 +76,6 @@ public class ClientController {
         clientRepository.save(client);
         return "updateClientForm";
     }
-/*
-    GetMapping("/searchClient")
-    public String searchClient(@Valid ){
-
-    }*/
 
     @GetMapping("/clientProfile/{id}")
     public String getClientProfile(@PathVariable("id") long id, Model model) {
@@ -95,7 +90,7 @@ public class ClientController {
         //   String strDate = dateFormat.format(client.birthdate);
         model.addAttribute("client", client);
         model.addAttribute("date", sDate1);
-        return "clientFiche";
+        return "clientCard";
     }
 
 

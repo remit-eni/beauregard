@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -15,9 +16,9 @@
     <label for="reference">Reference</label>
     <input type="text" th:field="*{reference}" id="reference" placeholder="reference">
     <span th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span>
-    <!-- <label for="creationDate">Date</label>
+    // <label for="creationDate">Date</label>
      <input type="datetime-local" th:field="*{creationDate}" id="creationDate" placeholder="creationDate">
-    <span th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></span> -->
+    <span th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></span>
     <label for="reference">client</label>
     <select th:field="*{client}" required>
         <option th:each="client : ${clients}"
@@ -36,3 +37,51 @@
 
 </body>
 </html>
+
+-->
+
+<div th:include="fragments/head :: head"></div>
+<div th:include="fragments/navbar :: navbar"></div>
+<div id="background">
+    <div id="title">Ajouter une commande</div>
+    <div class="container">
+        <hr>
+
+        <form action="#" th:action="@{/createOrderPage}" th:object="${order}" method="post">
+            <div class="form-group row">
+                <label for="reference" class="col-sm-2 col-form-label">Référence</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{reference}" id="reference" name="reference"
+                           placeholder="Reference" th:required="required"/>
+                    <span th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="reference" class="col-sm-2 col-form-label">Client</label>
+                <div class="col-sm-10">
+                    <select class="form-control selective" th:field="*{client}" required="required" id="reference"
+                            name="reference">
+                        <option th:each="client : ${clients}"
+                                th:value="${client.id}"
+                                th:text="${client.lastname}"></option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="float-right">
+                        <a th:href="@{/orderPage}" type="button">
+                            <button class="btn" style="background-color: #202326 ; color: white">Annuler</button>
+                        </a>
+                        <button type="submit" class="btn" style="background-color: #202326 ; color: white">Envoyer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div style="padding: 3%; font-weight: bold"><a style="color: #202326;" th:href="@{/orderPage}">Retour à la liste
+            des commandes</a></div>
+    </div>
+</div>
+<div th:include="fragments/footer :: footer"></div>

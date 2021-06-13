@@ -29,13 +29,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0")
-
+    compile group: 'com.github.javafaker', name: 'javafaker', version: '0.15'
 }
 
 test {

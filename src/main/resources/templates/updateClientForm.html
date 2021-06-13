@@ -4,11 +4,10 @@
 <div id="title">Modification du client</div>
 <div class="container" >
   <hr>
-  <div class="alert alert-success alert-dismissible fade show">
+ <!-- <div class="alert alert-success alert-dismissible fade show">
   <strong>Success!</strong> Your message has been sent successfully.
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-</div>
-  <br>
+</div> -->
   <form action="#"  th:action="@{/updateClient/{id}(id=${client.id})}" th:object="${client}" method="post">
     <h5>Civilités</h5>
     <div class="form-group row">
@@ -18,7 +17,6 @@
         <input type="text" class="form-control" th:field="*{firstname}" id="firstname" name="firstname" placeholder="Prénom" th:required="required"/>
       </div>
     </div>
-
     <div class="form-group row">
       <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
       <label for="lastname" class="col-sm-2 col-form-label" >Nom</label>
@@ -93,23 +91,16 @@
     <div class="form-group">
       <div class="col-sm-12">
         <div class="float-right">
+          <a th:href="@{/clientPage}" type="button"><button class="btn" style="background-color: #202326 ; color: white">Annuler</button></a>
           <button type="submit" class="btn" style="background-color: #202326 ; color: white">Envoyer</button>
         </div>
       </div>
     </div>
   </form>
+  <div style="padding: 3%; font-weight: bold"><a style="color: #202326;" th:href = "@{/clientPage}">Retour à la liste des clients</a></div>
 </div>
 
-  <div style="padding: 3%; font-weight: bold"><a style="color: #202326;" th:href = "@{/clientPage}">Retour à la liste des clients</a></div>
 
 </div>
 </div>
 <div th:include="fragments/footer :: footer"></div>
-
-<script>
-  $(document).ready(function(){
-    $(".close").click(function(){
-      $("#myAlert").alert('close');
-    });
-  });
-</script>

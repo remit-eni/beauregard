@@ -1,39 +1,120 @@
-
 #logo{
     width: 9rem;
     length: 9rem;
     margin: 1.4rem 3rem 1.4rem 3rem;
 }
+#logoHome{
+    display: flex;
+    justify-content: center;
+}
+#logoHomeP{
+    width: 11rem;
+    length: 11rem;
+    margin: 1rem 3rem 1.5rem 3rem;
+}
 
 #title{
     padding: 2rem;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     text-transform: uppercase;
+}
+#titleHome{
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
 }
 
 container{
     margin-bottom: 10rem;
 }
-
 #background{
-
     background-image: url("../img/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
+#backgroundReg{
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1rem 9rem 4rem 9rem;
+}
+#backgroundLog{
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 4rem 9rem 4rem 9rem;
+}
+.nav-item{
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin:0rem 0.8rem 0rem 0.8rem;
+}
+#logout{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 3rem;
+}
+#success{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+#formReg{
+    margin-bottom: 0rem;
+}
+#failMsg{
+    font-weight: bold;
+    font-size: 1rem;
+    color: #FF1C19;
+}
+#msgReg{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+#backgroundHome{
+    background-color: whitesmoke;
+    margin: 0rem 9rem 0rem 9rem;
+    padding: 6rem 0.5rem 6rem 0.5rem;
+    border-radius: 25px;
+}
+.alignButton{
+    display: flex;
+    justify-content: center;
+}
+
+#bttn{
+    background-color: #202326;
+    color: white;
+}
+#bttn-auth{
+    background-color: #202326;
+    color: white;
+    margin-top: 1.5rem;
+}
+
+#iconLogout{
+    color:black;
+}
 
 #conteneur{
     margin-top: 5rem;
+    padding-bottom: 5rem;
 }
 
 #addButton{
     display: flex;
     flex-direction:row-reverse;
-    margin-top: 3rem;
-    margin-bottom: 2.5rem;
-    padding-bottom: 5rem;
+    margin-left: 2.5rem;
+    padding-bottom: 3rem;
 }
 
 .linkFooter{
@@ -58,6 +139,14 @@ container{
     line-height: 6em;
     white-space: nowrap;
     text-align: center;
+}
+#tddesc{
+    height: 6em;
+    line-height: 6em;
+    text-align: center;
+}
+#pictureth{
+    width: 50%;
 }
 
 footer{

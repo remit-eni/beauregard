@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
-                        <h4 th:text="${client.lastname}+' '+${client.firstname}">
+                        <h4 th:text="${client.firstname}+' '+${client.lastname}">
                         </h4>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                                     <label class="lab">Date de naissance</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p  pattern="\d{1,2}/\d{1,2}/\d{4}" th:text="${date}"></p>
+                                    <p th:text="${#dates.format(client.birthdate, 'dd/MM/yyyy')}"></p>
                                 </div>
                             </div>
                             <div class="row">

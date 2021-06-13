@@ -29,6 +29,7 @@ public class Client implements Serializable {
 
     @NotEmpty(message = "Le champ email ne peut être vide")
     @Pattern(regexp = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$")
+    @Column(nullable = false,unique = true)
     private String email;
 
     @NotEmpty(message = "Le champ password ne peut être vide")
@@ -44,7 +45,6 @@ public class Client implements Serializable {
 
     @Column(columnDefinition = "boolean default false")
     private boolean ordered;
-
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Address_id")
@@ -184,9 +184,9 @@ public class Client implements Serializable {
                 ", birthdate=" + birthdate +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", ordered=" + ordered +
-             //   ", address=" + address +
-             //    ", user=" + user +
-             //  ", company=" + company +
+              // ", address=" + address +
+                ", user=" + user +
+               ", company=" + company +
                 ", orders=" + orders +
                 '}';
     }

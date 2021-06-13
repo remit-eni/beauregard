@@ -3,9 +3,10 @@ package fr.acme.beauregardproject.entities;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,10 +16,12 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Le champ référence ne peut être vide")
+    @Column(nullable = false)
     private String reference;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm")
-    private LocalDateTime creationDate;
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+    private Date creationDate;
 
     @ManyToOne
     @JoinColumn(name = "Client_id")
@@ -27,11 +30,10 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "order")
     List<ProductHasOrder> orderLines= new ArrayList<>();
 
-
     public Order() {
     }
 
-    public Order(String reference, LocalDateTime creationDate, Client client) {
+    public Order(String reference, Date creationDate, Client client) {
         this.reference = reference;
         this.creationDate = creationDate;
         this.client = client;
@@ -53,11 +55,11 @@ public class Order implements Serializable {
         this.reference = reference;
     }
 
-    public LocalDateTime getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
 
@@ -75,7 +77,7 @@ public class Order implements Serializable {
                 "id=" + id +
                 ", reference='" + reference + '\'' +
                 ", creationDate=" + creationDate +
-                ", client=" + client +
+                //", client=" + client +
                 '}';
     }
 }
